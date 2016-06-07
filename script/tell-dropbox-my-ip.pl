@@ -6,7 +6,7 @@ tell-dropbox-my-ip.pl
 
 =head1 DESCRIPTION
 
-It is goiing to be a personal server. So only I need to know the IP.
+This is going to be a personal server. So only I need to know the IP.
 
 The plan:
 Look up ip
@@ -18,9 +18,12 @@ Store in given catalog. Check dropbox status, dropbox start dropbox stop.
 
 =cut
 use Mojo::Base -strict;
-use Mojo :: UserAgent;
+use Mojo::UserAgent;
+use Mojo::Util 'dumper';
 # http://mojolicious.org/perldoc/Mojolicious/Guides/Growing
 #
 my $ua = Mojo::UserAgent->new;
 $ua->max_redirects(5);
-my $value = $ua->gett('http://ip-api.com/json/') ->res->json;
+my $value = $ua->get('http://ip-api.com/json/') ->res->json;
+my $cels = `uname -a`=~/raspb/i ? `/opt/vc/bin/vcgencmd measure_temp`:`sensors`;
+printf "%s %s\n",$cels ,dumper $value;
