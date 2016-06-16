@@ -20,10 +20,19 @@ Store in given catalog. Check dropbox status, dropbox start dropbox stop.
 use Mojo::Base -strict;
 use Mojo::UserAgent;
 use Mojo::Util 'dumper';
+
 # http://mojolicious.org/perldoc/Mojolicious/Guides/Growing
 #
 my $ua = Mojo::UserAgent->new;
 $ua->max_redirects(5);
 my $value = $ua->get('http://ip-api.com/json/') ->res->json;
-my $cels = `uname -a`=~/raspb/i ? `/opt/vc/bin/vcgencmd measure_temp`:`sensors`;
+my $uname = `uname -a`;
+my $cels;
+if ($uname=~/raspb/i) {
+     $cels=`/opt/vc/bin/vcgencmd measure_temp`;
+} elsif ($uname=~/msys/i) {
+    $cels='';
+} else {
+    `sensors`;
+}
 printf "%s %s\n",$cels ,dumper $value;
