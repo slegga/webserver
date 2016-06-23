@@ -20,7 +20,7 @@ Store in given catalog. Check dropbox status, dropbox start dropbox stop.
 use Mojo::Base -strict;
 use Mojo::UserAgent;
 use Mojo::Util 'dumper';
-
+use POSIX qw( strftime );
 # http://mojolicious.org/perldoc/Mojolicious/Guides/Growing
 #
 my $ua = Mojo::UserAgent->new;
@@ -35,4 +35,4 @@ if ($uname=~/raspb/i) {
 } else {
     `sensors`;
 }
-printf "%s %s\n",$cels ,dumper $value;
+printf "%s\n%s %s\n",strftime("%Y-%m-%d %H:%M:%S", localtime) ,$cels ,dumper $value;
