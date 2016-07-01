@@ -87,4 +87,3 @@ Welcome <%= session 'user' %>.<br>
   <head><title>Login Manager</title></head>
   <body><%= content %></body>
 </html>
-

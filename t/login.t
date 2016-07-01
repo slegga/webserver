@@ -3,7 +3,7 @@ use Test::Mojo;
 
 # Include application
 use FindBin;
-require "$FindBin::Bin/../webportal.pl";
+require "$FindBin::Bin/../MyApp.pl";
 
 # Allow 302 redirect responses
 my $t = Test::Mojo->new;
