@@ -1,15 +1,28 @@
 package MyApp::Model::Users;
 
+=head2 How to generate a google authenticator secret
+
+ perl
+ $base32_alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+ print substr($base32_alphabet,rand(32),1) for (0..20);
+ print "\n";
+
+=cut 
+
 use strict;
 use warnings;
+use Authen::OATH;
+use Convert::Base32;
 
 use Mojo::Util 'secure_compare';
 
 my $USERS = {
-  joel      => 'las3rs',
-  marcus    => 'lulz',
-  sebastian => 'secr3t'
+  marcus    => {type=>'password',secret=>'lulz'},
+  sebastian => {type=>'password',secret=>'secr3t'},
+  foo       => {type=>,'google' ,secret=>"3RZHGD2DLIMBT4C3GLFDG"},
 };
+
+
 
 sub new { bless {}, shift }
 
@@ -17,10 +30,23 @@ sub check {
   my ($self, $user, $pass) = @_;
 
   # Success
-  return 1 if $USERS->{$user} && secure_compare $USERS->{$user}, $pass;
-
+ if (my $u =  $USERS->{$user}) {
+    if ($u->{type} eq 'password') {
+        return 1 if (secure_compare($pass,$u->{secret}));
+    } elsif ($u->{type} eq 'google') {
+        my $oath = Authen::OATH->new;
+        my $correct_otp = $oath->totp(
+        decode_base32( $u->{secret}        ));
+        print $correct_otp,"\n";
+        return 1 if (secure_compare($pass,$correct_otp));
+    } else {
+        die "Unkown type";
+    }
+  }
   # Fail
   return undef;
 }
+
+
 
 1;
