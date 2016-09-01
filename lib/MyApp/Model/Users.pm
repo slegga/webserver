@@ -13,15 +13,22 @@ use strict;
 use warnings;
 use Authen::OATH;
 use Convert::Base32;
+use YAML::Tiny;
 
 use Mojo::Util 'secure_compare';
 
-my $USERS = {
-  marcus    => {type=>'password',secret=>'lulz'},
-  sebastian => {type=>'password',secret=>'secr3t'},
-  foo       => {type=>,'google' ,secret=>"3RZHGD2DLIMBT4C3GLFDG"},
-};
-
+my $USERS;
+my $userfile = '~/etc/users.yml';
+if (-r $userfile ) {
+    $tmp = YAML::Tiny->read( $userfile );
+    $USERS = $tmp->[0]->{users};
+}else {
+    $USERS = {
+          marcus    => {type=>'password',secret=>'lulz'},
+          sebastian => {type=>'password',secret=>'secr3t'},
+          foo       => {type=>,'google' ,secret=>"3RZHGD2DLIMBT4C3GLFDG"},
+    };
+}
 
 
 sub new { bless {}, shift }
