@@ -20,7 +20,7 @@ use Mojo::Util 'secure_compare';
 my $USERS;
 my $userfile = '~/etc/users.yml';
 if (-r $userfile ) {
-    $tmp = YAML::Tiny->read( $userfile );
+    my $tmp = YAML::Tiny->read( $userfile );
     $USERS = $tmp->[0]->{users};
 }else {
     $USERS = {
