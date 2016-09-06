@@ -4,7 +4,7 @@ package MyApp::Model::Users;
 
  perl
  $base32_alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
- print substr($base32_alphabet,rand(32),1) for (0..16);
+ print substr($base32_alphabet,rand(32),1) for (0..20);
  print "\n";
 
 =cut 
@@ -16,6 +16,8 @@ use Convert::Base32;
 use YAML::Tiny;
 use Mojo::Log;
 use FindBin;
+use Data::Dumper;
+use Encode;
 
 # Log to STDERR
 my $log = Mojo::Log->new;
@@ -34,8 +36,8 @@ if (-r $userfile ) {
           foo       => {type=>,'google' ,secret=>"3RZHGD2DLIMBT4C3GLFDG"},
     };
 }
-warn $USERS;
-$log->warn( $USERS );
+warn Dumper $USERS;
+#$log->warn( $USERS );
 
 
 sub new { bless {}, shift }
@@ -49,9 +51,10 @@ sub check {
         return 1 if (secure_compare($pass,$u->{secret}));
     } elsif ($u->{type} eq 'google') {
         my $oath = Authen::OATH->new;
-        my $correct_otp = $oath->totp(
-        decode_base32( $u->{secret}        ));
-        print $correct_otp,"\n";
+        my $bytes = decode_base32( "jc65zcs5qlhrqcolrzgx3" );#$u->{secret} );
+        my $correct_otp = $oath->totp($bytes);
+        $correct_otp=sprintf("%06d",$correct_otp);
+        warn $correct_otp,"\n";
         return 1 if (secure_compare($pass,$correct_otp));
     } else {
         die "Unkown type";
@@ -61,6 +64,12 @@ sub check {
   return undef;
 }
 
-
+sub padd5 {
+    my $token = shift;
+    while (length $token < 6) {
+        $token = "0$token";
+    }
+    return $token;
+}
 
 1;
