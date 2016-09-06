@@ -4,7 +4,7 @@ package MyApp::Model::Users;
 
  perl
  $base32_alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
- print substr($base32_alphabet,rand(32),1) for (0..20);
+ print substr($base32_alphabet,rand(32),1) for (0..16);
  print "\n";
 
 =cut 
@@ -14,21 +14,28 @@ use warnings;
 use Authen::OATH;
 use Convert::Base32;
 use YAML::Tiny;
+use Mojo::Log;
+use FindBin;
+
+# Log to STDERR
+my $log = Mojo::Log->new;
 
 use Mojo::Util 'secure_compare';
 
 my $USERS;
-my $userfile = '~/etc/users.yml';
+my $userfile = "$FindBin::Bin/../../../etc/users.yml";
 if (-r $userfile ) {
     my $tmp = YAML::Tiny->read( $userfile );
     $USERS = $tmp->[0]->{users};
-}else {
+} else {
     $USERS = {
           marcus    => {type=>'password',secret=>'lulz'},
           sebastian => {type=>'password',secret=>'secr3t'},
           foo       => {type=>,'google' ,secret=>"3RZHGD2DLIMBT4C3GLFDG"},
     };
 }
+warn $USERS;
+$log->warn( $USERS );
 
 
 sub new { bless {}, shift }
