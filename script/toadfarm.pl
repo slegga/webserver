@@ -11,4 +11,4 @@ logging {
 mount "MyApp";
 
 plugin "Toadfarm::Plugin::AccessLog";
-start;
+start ['http://*:8888'], workers => 1;
