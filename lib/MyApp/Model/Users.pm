@@ -25,7 +25,9 @@ my $log = Mojo::Log->new;
 use Mojo::Util 'secure_compare';
 
 my $USERS;
-my $userfile = "$FindBin::Bin/../../../etc/users.yml";
+my $userfile = $ENV{CONFIG_DIR}||"$FindBin::Bin/../../../etc";
+$userfile .= "/users.yml";
+warn $userfile;
 if (-r $userfile ) {
     my $tmp = YAML::Tiny->read( $userfile );
     $USERS = $tmp->[0]->{users};
