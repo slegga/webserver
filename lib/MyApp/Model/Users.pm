@@ -4,8 +4,8 @@ package MyApp::Model::Users;
 
  perl
  $base32_alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
- print substr($base32_alphabet,rand(32),1) for (0..20);
- print "\n";
+ print substr($base32_alphabet,rand(32),1) for (0..18);
+ print "A\n"; # The last bits must be zeros. A is 5 0's
 
 =cut 
 
