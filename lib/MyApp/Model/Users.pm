@@ -4,8 +4,7 @@ package MyApp::Model::Users;
 
  perl
  $base32_alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
- print substr($base32_alphabet,rand(32),1) for (0..18);
- print "A\n"; # The last bits must be zeros. A is 5 0's
+ print substr($base32_alphabet,rand(32),1) for (0..20);
 
 =cut 
 
@@ -53,7 +52,9 @@ sub check {
         return 1 if (secure_compare($pass,$u->{secret}));
     } elsif ($u->{type} eq 'google') {
         my $oath = Authen::OATH->new;
-        my $bytes = decode_base32( "jc65zcs5qlhrqcolrzgx3" );#$u->{secret} );
+	die if ! length($u->{secret});
+	$log->info('secret:'. ($u->{secret}//'__UNDEF__'));
+        my $bytes = decode_base32( $u->{secret} );
         my $correct_otp = $oath->totp($bytes);
         $correct_otp=sprintf("%06d",$correct_otp);
         warn $correct_otp,"\n";

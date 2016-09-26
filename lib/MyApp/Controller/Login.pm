@@ -1,11 +1,15 @@
 package MyApp::Controller::Login;
 use Mojo::Base 'Mojolicious::Controller';
+use Mojo::Log;
+my $log = Mojo::Log->new;
+
 
 sub index {
   my $self = shift;
-
   my $user = $self->param('user') || '';
   my $pass = $self->param('pass') || '';
+  $log->info("$user tries to log in");
+
   return $self->render unless $self->users->check($user, $pass);
 
   $self->session(user => $user);
