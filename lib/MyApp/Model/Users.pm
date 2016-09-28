@@ -13,13 +13,13 @@ use warnings;
 use Authen::OATH;
 use Convert::Base32;
 use YAML::Tiny;
-use Mojo::Log;
+#use Mojo::Log;
 use FindBin;
 use Data::Dumper;
 use Encode;
 
 # Log to STDERR
-my $log = Mojo::Log->new;
+#my $log = Mojo::Log->new;
 
 use Mojo::Util 'secure_compare';
 
@@ -45,7 +45,7 @@ sub new { bless {}, shift }
 
 sub check {
   my ($self, $user, $pass) = @_;
-
+#  $self->log->warn("$user tries to log in");
   # Success
  if (my $u =  $USERS->{$user}) {
     if ($u->{type} eq 'password') {
@@ -53,12 +53,17 @@ sub check {
     } elsif ($u->{type} eq 'google') {
         my $oath = Authen::OATH->new;
 	die if ! length($u->{secret});
-	$log->info('secret:'. ($u->{secret}//'__UNDEF__'));
         my $bytes = decode_base32( $u->{secret} );
         my $correct_otp = $oath->totp($bytes);
         $correct_otp=sprintf("%06d",$correct_otp);
         warn $correct_otp,"\n";
-        return 1 if (secure_compare($pass,$correct_otp));
+        if (secure_compare($pass,$correct_otp)) {
+#		$self->log->warn("$user has successfully logged in");
+		return 1;
+	} else {
+#		$self->log->warn("$user has wrong password");
+		return;
+	}
     } else {
         die "Unkown type";
     }
