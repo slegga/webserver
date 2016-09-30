@@ -12,13 +12,14 @@ MyApp::Plugin::Logf - Common logging
 
   get '/path' => sub {
     my $self = shift;
-    $self->logf(info => 'Hey!');
+    $self->log->info('Hey!');
   };
 
 =cut
 
 use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::Log;
+
 
 =head1 METHODS
 
@@ -39,7 +40,7 @@ sub register {
     $config->{level} = $ENV{LOG_LEVEL};
   }
   
-  $log = Mojo::Log->new(%$config);
+  my $log = Mojo::Log->new(%$config);
 
   $app->helper(log => sub {
     return $log;
