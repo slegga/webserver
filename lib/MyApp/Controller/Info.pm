@@ -7,29 +7,21 @@ Show info for pi status and all info server knows about client
 
 =cut
 
+sub landing_page {
+  my $self = shift;
+
+  return $self->render(text=>$self->route})
+};
+
 sub info {
   my $self = shift;
 
-  my $user = $self->param('user') || '';
-  my $pass = $self->param('pass') || '';
-  return $self->render unless $self->users->check($user, $pass);
-
-  $self->session(user => $user);
-  $self->flash(message => 'Thanks for logging in.');
-  $self->redirect_to('protected');
+  return $self->render(text=>$self->tx-req)
 }
 
-sub logged_in {
+sub show_pi_status {
   my $self = shift;
-  return 1 if $self->session('user');
-  $self->redirect_to('index');
-  return undef;
-}
-
-sub logout {
-  my $self = shift;
-  $self->session(expires => 1);
-  $self->redirect_to('index');
+  return $self->reply->static('/stein/Dropbox/Apps/pib_stein/pi-status.txt');
 }
 
 1;

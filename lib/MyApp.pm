@@ -13,11 +13,12 @@ sub startup {
   $self->helper(users => sub { state $users = MyApp::Model::Users->new });
  
   my $r = $self->routes;
-  $r->any('/')->to('login#index')->name('index');
- 
   my $logged_in = $r->under('/')->to('login#logged_in');
   $logged_in->get('/protected')->to('login#protected');
  
+  $logged_in->any('/')->to('info#landing_page')->name('index');
+  $logged_in->any('/info)'->to('info#info')->name('info');
+  $logged_in->any('/pi-status')->to('info#show_pi_status')->name('pi');
   $r->get('/logout')->to('login#logout');
 }
  
