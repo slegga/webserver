@@ -8,11 +8,12 @@ sub index {
   my $self = shift;
   my $user = $self->param('user') || '';
   my $pass = $self->param('pass') || '';
-  $log->info("$user tries to log in");
+  $self->app->log->info("$user tries to log in");
 
   return $self->render unless $self->users->check($user, $pass);
 
   $self->session(user => $user);
+ 
   $self->flash(message => 'Thanks for logging in.');
   $self->redirect_to('protected');
 }
