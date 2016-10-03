@@ -17,7 +17,7 @@ sub startup {
   $logged_in->get('/protected')->to('login#protected');
  
   $logged_in->any('/')->to('info#landing_page')->name('index');
-  $logged_in->any('/info)'->to('info#info')->name('info');
+  $logged_in->any('/info')->to('info#info')->name('info');
   $logged_in->any('/pi-status')->to('info#show_pi_status')->name('pi');
   $r->get('/logout')->to('login#logout');
 }
