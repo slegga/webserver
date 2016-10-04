@@ -1,5 +1,7 @@
 package MyApp::Controller::Info;
 use Mojo::Base 'Mojolicious::Controller';
+use Mojo::JSON qw(decode_json encode_json);
+use File::Slurp;
 
 =head1 info
 
@@ -10,18 +12,19 @@ Show info for pi status and all info server knows about client
 sub landing_page {
   my $self = shift;
 
-  return $self->render(text=>$self->route})
-};
+  return $self->render(text=>$self->app->route)
+}
 
 sub info {
   my $self = shift;
-
-  return $self->render(text=>$self->tx-req)
+  my $info = encode_json(%{$self->tx->req});
+  return $self->render(text=>$info);
 }
 
 sub show_pi_status {
   my $self = shift;
-  return $self->reply->static('/stein/Dropbox/Apps/pib_stein/pi-status.txt');
+  
+  return $self->render(text=> read_file('~/tmp/pi-status.txt') );
 }
 
 1;
