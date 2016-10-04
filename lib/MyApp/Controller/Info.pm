@@ -12,19 +12,19 @@ Show info for pi status and all info server knows about client
 sub landing_page {
   my $self = shift;
 
-  return $self->render(text=>$self->app->route)
+  return $self->render(text=>$self->app->route->to_string)
 }
 
 sub info {
   my $self = shift;
-  my $info = encode_json(%{$self->tx->req});
+  my $info = $self->tx->req->text;
   return $self->render(text=>$info);
 }
 
 sub show_pi_status {
   my $self = shift;
   
-  return $self->render(text=> read_file('~/tmp/pi-status.txt') );
+  return $self->render(text=> read_file('/home/stein/tmp/pi-status.txt') );
 }
 
 1;
