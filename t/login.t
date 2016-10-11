@@ -22,6 +22,6 @@ $t->get_ok('/logout')->status_is(200)
   ->element_exists('form input[name="user"]')
   ->element_exists('form input[name="pass"]')
   ->element_exists('form input[type="submit"]');
- 
+$t->get_ok('/protected')->status_is(200)->content_like(qr'Password'); 
 done_testing();
 

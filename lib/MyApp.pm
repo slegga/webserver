@@ -2,14 +2,20 @@ package MyApp;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugins;
 
+=head1 TESTING
+
+  
+
+=cut
+
 my $plugins = Mojolicious::Plugins->new;
 $plugins->namespaces( ['MyApp::Plugin']);
 use MyApp::Model::Users;
 sub startup {
   my $self = shift;
-  $self->plugin('Mojolicious::Plugin::Config' => {file => '../myapp.conf'});
+  my $config = $self->plugin('Mojolicious::Plugin::Config' => {file => '../myapp.conf'});
   $self->plugin('MyApp::Plugin::Logger');
-  $self->secrets(['5sq/vU1hrBKIheQv5OlFKs4iN5FEamwBt7FrDO1vKw4rG+/XvnhF6KDVArsN7jQ']);
+  $self->secrets($config->{secrets});
   $self->helper(users => sub { state $users = MyApp::Model::Users->new });
  
   my $r = $self->routes;
