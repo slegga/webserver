@@ -28,6 +28,8 @@ sub startup {
  
   $logged_in->any('/info')->to('info#info')->name('info');
   $logged_in->any('/pi-status')->to('info#show_pi_status');
+  
+  $self->helper(config => sub {return $config});
 }
  
 1;
