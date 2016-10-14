@@ -21,6 +21,8 @@ $t->get_ok('/protected')->status_is(200)->text_like('a' => qr/Logout/);
 $t->get_ok('/index')->status_is(200);
 
 $t->get_ok('/pi-status')->status_is(200);
+
+$t->get_ok('/info')->status_is(200);
  
 $t->get_ok('/logout')->status_is(200)
   ->element_exists('form input[name="user"]')

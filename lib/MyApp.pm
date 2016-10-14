@@ -14,6 +14,8 @@ use MyApp::Model::Users;
 sub startup {
   my $self = shift;
   my $config = $self->plugin('Mojolicious::Plugin::Config' => {file => '../myapp.conf'});
+#  $self->paths(['/home/stein/git/pi-webserver/static']);
+  push @{$self->static->paths}, $self->home->rel_dir('static');
   $self->plugin('MyApp::Plugin::Logger');
   $self->secrets($config->{secrets});
   $self->helper(users => sub { state $users = MyApp::Model::Users->new });
@@ -28,7 +30,10 @@ sub startup {
  
   $logged_in->any('/info')->to('info#info')->name('info');
   $logged_in->any('/pi-status')->to('info#show_pi_status');
-  
+
+  $logged_in->any('/bootstrap' => sub {  my $c = shift;
+    $c->reply->static('bootstrap.html');
+  });  
   $self->helper(config => sub {return $config});
 }
  
