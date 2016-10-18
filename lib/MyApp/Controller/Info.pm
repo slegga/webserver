@@ -16,8 +16,9 @@ my $conv = new HTML::TextToHTML();
 
 sub landing_page {
   my $self = shift;
-  return $self->render(text =>'Her kommer index');
-  return $self->render(text=>$self->app->route->to_string)
+  $self->stash(pagecontent => 'Her kommer det tekst');
+  $self->stash(pageobj => '/include/basic');
+  return $self->render(template => '/commons/pagecontent');
 }
 
 sub info {
@@ -34,7 +35,7 @@ sub show_pi_status {
 #  return $self->render(text => $file);
   my $text = read_file($file);  
   my $html = $conv->process_chunk($text);
-#  warn $text;
+  warn $text;
 #  $text = cr2br($text);
   return $self->render(text => $html, format =>'html' );
 }

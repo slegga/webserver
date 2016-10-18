@@ -20,7 +20,7 @@ sub login {
   $self->session(user => $user);
  
   $self->flash(message => 'Thanks for logging in.');
-  $self->redirect_to('protected');
+  $self->redirect_to('index');
 }
 
 sub logged_in {

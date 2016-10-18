@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Hammer</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
@@ -22,7 +22,7 @@
     }
     </style>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+v    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -50,13 +50,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="/pi-status">Pi status</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="/info">Request</a>
+                    </li>
+                      <li>
+                        <a href="/index">Index</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="/bootstrap">Bootstrap</a>
+                    </li>
+                    <li>
+                        <a href="/logout">logout</a>
                     </li>
                 </ul>
             </div>
@@ -67,7 +73,7 @@
 
     <!-- Page Content -->
     <div class="container">
-
+    %= include $pageobj, pagecontent => $pagecontent
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>A Bootstrap Starter Template</h1>
@@ -84,10 +90,10 @@
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 

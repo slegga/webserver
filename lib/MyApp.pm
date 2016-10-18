@@ -28,14 +28,14 @@ sub startup {
   $logged_in->any('/')->to('login#protected')->name('protected');
   $logged_in->any('/index')->to('info#landing_page');
  
-  $logged_in->any('/info')->to('info#info')->name('info');
+  $logged_in->any('/info')->to('info#info');
   $logged_in->any('/pi-status')->to('info#show_pi_status');
 
   $logged_in->any('/bootstrap' => sub {  my $c = shift;
     $c->reply->static('bootstrap.html');
   });
-  $logged_in->any('/bootstrap2'=>sub{ shift->render(template =>'/commons/bootstrap')})  ; 
-  $self->helper(config => sub {return $config});
+  $logged_in->any('/bootstrap2'=>sub{ shift->render(template =>'/commons/pagecontent')})  ; 
+#  $self->helper(conf => sub {return $config});
 }
  
 1;
