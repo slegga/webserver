@@ -4,7 +4,7 @@
 % }
 Welcome <%= session 'user' %>.<br>
 %= link_to Logout => 'logout'
-%= link_to Logout => '/info'
-%= link_to Logout => '/pi-status'
-%= link_to Logout => '/bootstrap'
+%= link_to Info => '/info'
+%= link_to Status => '/pi-status'
+%= link_to Bootstrap => '/bootstrap'
 
