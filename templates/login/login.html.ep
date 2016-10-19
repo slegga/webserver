@@ -1,5 +1,5 @@
 % layout 'default';
-%= form_for index => begin
+%= form_for login => begin
   % if (param 'user') {
     <b>Wrong name or password, please try again.</b><br>
   % }

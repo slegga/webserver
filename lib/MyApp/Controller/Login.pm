@@ -4,30 +4,37 @@ use Mojo::Log;
 my $log = Mojo::Log->new;
 
 
-sub index {
+sub login {
   my $self = shift;
   my $user = $self->param('user') || '';
   my $pass = $self->param('pass') || '';
-  $log->info("$user tries to log in");
 
-  return $self->render unless $self->users->check($user, $pass);
+  $self->app->log->info("$user tries to log in");
+  if(! $self->users->check($user, $pass) ) {
+	$self->app->log->info("$user is NOT logged in");
+	return $self->render
+  }
+
+  $self->app->log->info("$user is logged in");
 
   $self->session(user => $user);
+ 
   $self->flash(message => 'Thanks for logging in.');
-  $self->redirect_to('protected');
+  $self->redirect_to('index');
 }
 
 sub logged_in {
   my $self = shift;
+  
   return 1 if $self->session('user');
-  $self->redirect_to('index');
+  $self->redirect_to('login');
   return undef;
 }
 
 sub logout {
   my $self = shift;
   $self->session(expires => 1);
-  $self->redirect_to('index');
+  $self->redirect_to('login');
 }
 
 1;

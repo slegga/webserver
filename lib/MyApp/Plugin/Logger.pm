@@ -1,4 +1,4 @@
-package MyApp::Plugin::Logf;
+package MyApp::Plugin::Logger;
 
 =head1 NAME
 
