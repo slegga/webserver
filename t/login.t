@@ -16,7 +16,7 @@ $t->get_ok('/login')
 $t->post_ok('/login' => form => {user => 'sebastian', pass => 'secr3t'})
   ->status_is(200)->content_like(qr/Bootstrap/); #was Welcome sebastian
  
-$t->get_ok('/protected')->status_is(200)->text_like('a' => qr/Logout/);
+$t->get_ok('/protected')->status_is(200)->text_like('a' => qr/Bootstrap/);
 
 $t->get_ok('/index')->status_is(200);
 

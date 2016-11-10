@@ -1,4 +1,4 @@
-% layout 'default';
+% layout 'login';
 %= form_for login => begin
   % if (param 'user') {
     <b>Wrong name or password, please try again.</b><br>
