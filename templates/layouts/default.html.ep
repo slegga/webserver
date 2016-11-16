@@ -43,7 +43,7 @@ v    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media quer
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="/index">Index</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -55,10 +55,7 @@ v    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media quer
                         <a href="/info">Request</a>
                     </li>
                       <li>
-                        <a href="/index">Index</a>
-                    </li>
-                    <li>
-                        <a href="/bootstrap">Bootstrap</a>
+                        <a href="/lyspaerer">Lyspære-regnskap</a>
                     </li>
                     <li>
                         <a href="/logout">logout</a>

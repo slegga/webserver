@@ -17,7 +17,7 @@ sub landing_page {
   my $self = shift;
   $self->stash(pagecontent => 'Her kommer det tekst');
   $self->stash(pageobj => '/include/basic');
-  return $self->render(template => '/commons/pagecontent');
+  return $self->render(template => 'landing_page');
 }
 
 sub info {

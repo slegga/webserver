@@ -1,0 +1,8 @@
+%= layout 'default';
+<P>Her er landing siden.<BR/>
+<lu>
+<li>Her skal de viktigste pi statusene dukke opp </li>
+<li>Litt info om vær</li>
+<li>Mail headere</li>
+</lu>
+<P>

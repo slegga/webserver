@@ -1,0 +1,8 @@
+%= layout 'default';
+% for my $key (keys %$myhash) {
+<div class="row">
+<div class="col-sm-1" style="background-color:lavender;"></div>
+%= label_for $key => $key
+%= text_field $myhash->{$key}  => $myhash->{$key}
+</div>
+% }

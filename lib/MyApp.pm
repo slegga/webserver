@@ -34,7 +34,6 @@ sub startup {
   $logged_in->any('/bootstrap' => sub {  my $c = shift;
     $c->reply->static('bootstrap.html');
   });
-  $logged_in->any('/bootstrap2'=>sub{ shift->render(template =>'/commons/pagecontent')})  ; 
 #  $self->helper(conf => sub {return $config});
 }
  
