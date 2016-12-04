@@ -55,9 +55,10 @@ sub check {
 	die if ! length($u->{secret});
         my $bytes = decode_base32( $u->{secret} );
         my $correct_otp = $oath->totp($bytes);
+	my $delay_otp     = $oath->totp($bytes, time()-30);
         $correct_otp=sprintf("%06d",$correct_otp);
         warn $correct_otp,"\n";
-        if (secure_compare($pass,$correct_otp)) {
+        if (secure_compare($pass,$correct_otp) || secure_compare($pass, $delay_otp)) {
 #		$self->log->warn("$user has successfully logged in");
 		return 1;
 	} else {
