@@ -1,2 +1,4 @@
-%= layout 'default';
+% layout 'default';
+<div class="col-sm-1" style="background-color:lavender;">
 %== $myhtml;
+</div>
