@@ -1,8 +1,9 @@
 % layout 'default';
-% for my $key (keys %$myhash) {
+% for my $key (sort keys %$myhash) {
 <div class="row">
-<div class="col-sm-1" style="background-color:lavender;"></div>
+<div class="col-sm-2 text-right" >
 %= label_for $key => $key
-%= text_field $myhash->{$key}  => $myhash->{$key}
+</div>
+%= text_field $myhash->{$key}  => $myhash->{$key}, class=>"col-sm-4"
 </div>
 % }
