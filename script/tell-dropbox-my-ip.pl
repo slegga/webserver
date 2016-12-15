@@ -19,20 +19,25 @@ Store in given catalog. Check dropbox status, dropbox start dropbox stop.
 =cut
 use Mojo::Base -strict;
 use Mojo::UserAgent;
+use Mojo::JSON qw( j decode_json encode_json from_json );
 use Mojo::Util 'dumper';
 use POSIX qw( strftime );
 # http://mojolicious.org/perldoc/Mojolicious/Guides/Growing
 #
 my $ua = Mojo::UserAgent->new;
 $ua->max_redirects(5);
-my $value = $ua->get('http://ip-api.com/json/') ->res->json;
+my $value_hr = $ua->get('http://ip-api.com/json/')->res->json;
+
 my $uname = `uname -a`;
 my $cels;
 if ($uname=~/raspb/i) {
      $cels=`/opt/vc/bin/vcgencmd measure_temp`;
+  ($value_hr->{temp}) = ($cels=~/temp\=([\d\.\,\w])+/);
 } elsif ($uname=~/msys/i) {
     $cels='';
 } else {
-    `sensors`;
+    $cels =`sensors`;
+  ($value_hr->{temp}) = ($cels=~/temp1\:\s+([\d\.\,\w\-\+]+.\w)/);
 }
-printf "%s\n%s %s\n",strftime("%Y-%m-%d %H:%M:%S", localtime) ,$cels ,dumper $value;
+$value_hr->{time} = strftime("%Y-%m-%d %H:%M:%S", localtime);
+printf j( $value_hr);
