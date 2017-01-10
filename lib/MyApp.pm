@@ -1,6 +1,7 @@
 package MyApp;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugins;
+#use Mojolicious::Plugin::AccessLog;
 
 =head1 TESTING
 
@@ -14,6 +15,8 @@ use MyApp::Model::Users;
 sub startup {
   my $self = shift;
   my $config = $self->plugin('Mojolicious::Plugin::Config' => {file => '../myapp.conf'});
+  $self->plugin('Mojolicious::Plugin::AccessLog' => {log => $config->{'accesslogfile'},
+    format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
 #  $self->paths(['/home/stein/git/pi-webserver/static']);
   push @{$self->static->paths}, $self->home->rel_dir('static');
   $self->plugin('MyApp::Plugin::Logger');
