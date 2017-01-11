@@ -1,7 +1,7 @@
 package MyApp;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugins;
-#use Mojolicious::Plugin::AccessLog;
+use MyApp::Model::Info;
 
 =head1 TESTING
 
@@ -21,7 +21,8 @@ sub startup {
   push @{$self->static->paths}, $self->home->rel_dir('static');
   $self->plugin('MyApp::Plugin::Logger');
   $self->secrets($config->{secrets});
-  $self->helper(users => sub { state $users = MyApp::Model::Users->new });
+  $self->helper(users  => sub { state $users = MyApp::Model::Users->new });
+  $self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
  
   my $r = $self->routes;
   $r->any('/login')->to('login#login')->name('login');
