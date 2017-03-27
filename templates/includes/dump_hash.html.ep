@@ -1,0 +1,8 @@
+% for my $key (sort keys %$myhash) {
+<div class="row">
+<div class="col-sm-2 text-right" >
+%= label_for $key => $key
+</div>
+%= text_field $myhash->{$key}  => $myhash->{$key}, class=>"col-sm-4"
+</div>
+% }
