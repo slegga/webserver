@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head><title>Login Manager</title></head>
-  <body><%= content %></body>
+  <body>
+     <div class="container">
+       <%= content %>
+     </div>
+  </body>
 </html>
