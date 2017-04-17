@@ -1,2 +1,2 @@
 % layout 'default';
-%= include 'dump_hash',myhash => $myhash;
+%= include 'includes/dump_hash',myhash => $myhash;

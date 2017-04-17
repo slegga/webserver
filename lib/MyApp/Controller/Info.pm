@@ -3,6 +3,7 @@ use Mojo::Base 'Mojolicious::Controller';
 use Mojo::JSON qw(decode_json encode_json);
 use HTML::TextToHTML;
 use File::Slurp;
+use Data::Dumper;
 
 =head1 info
 
@@ -30,8 +31,8 @@ sub info {
 
 sub show_pi_status {
   my $self = shift;
-
-  return $self->render('commons/dump_hash', myhash => $self->inform->get_pi_status_hr($self) );
+  my $return = $self->inform->get_pi_status_hr($self);
+  return $self->render('commons/dump_hash', myhash => $return );
 }
 
 
