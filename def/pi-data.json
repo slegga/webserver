@@ -1,0 +1,36 @@
+{
+  "swagger": "2.0",
+  "info": { "version": "1.0", "title": "Some awesome API" },
+  "basePath": "/api",
+  "paths": {
+    "/set_pi_ip": {
+      "post": {
+        "operationId": "postPiIp",
+        "x-mojo-name": "post_pi_ip",
+        "x-mojo-to": "pi-ip#set_pi_ip",
+        "summary": "Set current PI ip.",
+        "parameters": [
+          {"in": "query", "name": "ip", "type": "integer"}
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet response",
+            "schema": {
+               "type": "object",
+               "properties": {
+                "pets": {
+                  "type": "array",
+                  "items": { "type": "object" }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": { "$ref": "http://git.io/vcKD4#" }
+          }
+        }
+      }
+    }
+  }
+}
