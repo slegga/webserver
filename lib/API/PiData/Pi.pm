@@ -1,7 +1,7 @@
-package Myapp::Controller::PiData;
+package API::PiData::Pi;
 use Mojo::Base "Mojolicious::Controller";
-
-sub set_pi_ip {
+use autodie;
+sub set_ip {
 
   # Do not continue on invalid input and render a default 400
   # error document.
@@ -18,11 +18,11 @@ sub set_pi_ip {
   my $input = $c->validation->output;
   my $pi_ip   = $input->{ip};
 
-	open my $fh,'>',$ENV{HOME}.'pi-ip.txt';
+	open my $fh,'>',$ENV{HOME}.'/etc/pi-ip.txt';
 	print $fh $pi_ip;
 	close $fh;
   # $output will be validated by the OpenAPI spec before rendered
-  $c->render(openapi => "ok");
+  $c->render(openapi => 'ok');
 }
 
 1;
