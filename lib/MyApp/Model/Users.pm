@@ -17,6 +17,7 @@ use YAML::Tiny;
 use FindBin;
 use Data::Dumper;
 use Encode;
+#use Mojolicious::Plugin::AccessLog;
 
 # Log to STDERR
 #my $log = Mojo::Log->new;
