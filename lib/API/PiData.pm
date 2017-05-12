@@ -3,7 +3,7 @@ use Mojo::Base "Mojolicious";
 
 sub startup {
   my $app = shift;
-  $app->plugin("OpenAPI" => {url => $app->home->rel_file("def/pi-data.json")});
+  $app->plugin("OpenAPI" => {url => $app->home->rel_file("def/pi-data.yaml")});
 }
 
 1;

@@ -15,8 +15,8 @@ sub set_ip {
 
   # $c->openapi->valid_input copies valid data to validation object,
   # and the normal Mojolicious api works as well.
-  my $input = $c->validation->output;
-  my $pi_ip   = $input->{ip};
+  my $body = $c->validation->output->{body};
+  my $pi_ip   = $body->{ip};
 
 	open my $fh,'>',$ENV{HOME}.'/etc/pi-ip.txt';
 	print $fh $pi_ip;
