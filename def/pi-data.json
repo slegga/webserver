@@ -10,11 +10,22 @@
         "x-mojo-to": "pi#set_ip",
         "summary": "Set current PI ip.",
         "parameters": [
-          {"in": "query", "name": "ip", "type": "string"} 
-        ],
+            {
+              "in": "body",
+              "name": "body",
+              "required": "true",
+              "schema": {
+                "type": "object",
+                "required": ["ip"],
+                "properties": {
+                  "ip": { "$ref": "#/definitions/ip"}
+                }
+              }
+            } 
+          ],
         "responses": {
           "200": {
-            "description": "Pet response",
+            "description": "Set ip response",
             "schema": {
                "type": "string"
            }
@@ -26,5 +37,36 @@
         }
       }
     }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "required": ["errors"],
+      "properties": {
+      	"errors": {
+	        "type": "array",
+        	"items": {
+          	"type": "object",
+          	"required": [ "message", "path" ],
+          	"properties": {
+            	"message": {
+              	"type": "string",
+              	"description": "Human readable error message"
+              },
+            	"path" : {
+              	"type": "string",
+              	"description": "JSON pointer to the error"
+							}
+						}
+					}
+				}
+			}
+		},
+  	"ip": {
+     	"type": "string",
+			"descripion": "ipv4"
+		}
+
   }
-}
+ 
+  }
