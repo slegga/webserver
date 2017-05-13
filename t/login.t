@@ -4,6 +4,7 @@ use FindBin;
  
 # Load application class
 $ENV{CONFIG_DIR}= $FindBin::Bin . '/etc';
+diag $ENV{CONFIG_DIR};
 my $t = Test::Mojo->new('MyApp');
 $t->ua->max_redirects(1);
  
