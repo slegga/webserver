@@ -17,8 +17,9 @@ sub set_ip {
   # and the normal Mojolicious api works as well.
   my $body = $c->validation->output->{body};
   my $pi_ip   = $body->{ip};
-
-	open my $fh,'>',$ENV{HOME}.'/etc/pi-ip.txt';
+  my $pi_ip_file = $c->config->{'data-dir'} ? $c->config->{'datadir'}.'/pi-ip.txt' : $ENV{HOME}.'/etc/pi-ip.txt';
+  warn $pi_ip_file;
+	open my $fh,'>', $pi_ip_file;
 	print $fh $pi_ip;
 	close $fh;
   # $output will be validated by the OpenAPI spec before rendered
