@@ -1,7 +1,10 @@
 use Test::More;
 use Test::Mojo;
 use FindBin;
- 
+
+sub repohomedir {
+	return "FindBin::Bin/..";
+} 
 # Load application class
 $ENV{CONFIG_DIR}= $FindBin::Bin . '/etc';
 my $t = Test::Mojo->new('API::PiData');
