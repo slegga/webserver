@@ -2,7 +2,7 @@ use Test::More;
 use FindBin;
 use File::Slurp;
 use Data::Dumper;
-my $conffile = "$FindBin::Bin/../../myapp.conf";
+my $conffile = "$FindBin::Bin/etc/myapp.conf";
 ok(-f $conffile,'myapp.conf exists');
 my $hash_r = eval(read_file($conffile));
 ok(exists $hash_r->{secrets},'secret exsits');

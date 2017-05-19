@@ -6,7 +6,7 @@ sub repohomedir {
 	return "FindBin::Bin/..";
 } 
 # Load application class
-$ENV{CONFIG_DIR}= $FindBin::Bin . '/etc';
+$ENV{MOJO_CONFIG} = $FindBin::Bin . '/etc/api.conf';
 my $t = Test::Mojo->new('API::PiData');
 $t->ua->max_redirects(1);
 my $ipfile = "$FindBin::Bin/data/pi-ip.txt","IP file is created";

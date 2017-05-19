@@ -1,5 +1,6 @@
 package API::PiData::Pi;
 use Mojo::Base "Mojolicious::Controller";
+use YAML 'Dump';
 use autodie;
 sub set_ip {
 
@@ -17,7 +18,8 @@ sub set_ip {
   # and the normal Mojolicious api works as well.
   my $body = $c->validation->output->{body};
   my $pi_ip   = $body->{ip};
-  my $pi_ip_file = $c->config->{'data-dir'} ? $c->config->{'datadir'}.'/pi-ip.txt' : $ENV{HOME}.'/etc/pi-ip.txt';
+  warn Dump $c->config;
+  my $pi_ip_file = $c->config->{'datadir'} ? $c->config->{'datadir'}.'/pi-ip.txt' : $ENV{HOME}.'/etc/pi-ip.txt';
   warn $pi_ip_file;
 	open my $fh,'>', $pi_ip_file;
 	print $fh $pi_ip;

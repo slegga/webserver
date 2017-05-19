@@ -4,6 +4,7 @@ use Mojo::Base "Mojolicious";
 sub startup {
   my $app = shift;
   $app->plugin("OpenAPI" => {url => $app->home->rel_file("def/pi-data.yaml")});
+  $app->plugin('Config');
 }
 
 1;
