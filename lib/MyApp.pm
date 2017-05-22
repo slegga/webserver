@@ -16,7 +16,7 @@ $plugins->namespaces( ['MyApp::Plugin']);
 use MyApp::Model::Users;
 sub startup {
   my $self = shift;
-  my $conf_dir = $ENV{CONFIG_DIR} ? $ENV{CONFIG_DIR} : $ENV{HOME}.'/etc';
+  my $conf_dir = $ENV{MOJO_CONFIG} ? $ENV{MOJO_CONFIG} : $ENV{HOME}.'/etc';
   my $conf_file = $conf_dir.'/myapp.conf';
   die "Missing config file: ".$conf_file if !-f $conf_file;
   my $config = $self->plugin('Mojolicious::Plugin::Config' => {file => $conf_file});
