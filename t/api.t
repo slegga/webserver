@@ -9,14 +9,14 @@ sub repohomedir {
 $ENV{MOJO_CONFIG} = $FindBin::Bin . '/etc/api.conf';
 my $t = Test::Mojo->new('API::PiData');
 $t->ua->max_redirects(1);
-my $ipfile = "$FindBin::Bin/data/pi-ip.txt","IP file is created";
+my $ipfile = "$FindBin::Bin/data/pi-status.json","IP file is created";
 
 if (-f $ipfile ) {
   unlink($ipfile);
 }
 
-$t->post_ok('/set_pi_ip' => json => {ip => '1.10.100.101'})
+$t->post_ok('/pi' => json => {ip => '1.10.100.101'})
   ->status_is(200)->content_is('"ok"');
-ok(-f "$FindBin::Bin/data/pi-ip.txt","IP file is created");
+ok(-f $ipfile, "IP file is created");
 done_testing();
 
