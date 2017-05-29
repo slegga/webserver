@@ -15,7 +15,7 @@ if (-f $ipfile ) {
   unlink($ipfile);
 }
 
-$t->post_ok('/pi' => json => {ip => '1.10.100.101'})
+$t->post_ok('/pi' => json => {query => '1.10.100.101'})
   ->status_is(200)->content_is('"ok"');
 ok(-f $ipfile, "IP file is created");
 done_testing();
