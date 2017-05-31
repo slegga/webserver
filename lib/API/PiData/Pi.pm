@@ -3,6 +3,16 @@ use Mojo::Base "Mojolicious::Controller";
 use YAML 'Dump';
 use autodie;
 use Mojo::JSON;
+
+sub _check_client_ip {
+# TODO
+# get array og Net::IP from config
+my @isp_ipaddresses_text = $c->config->{isp_ip_range};
+# Use Net::IP ip_is_overlap to auth if 
+
+
+}
+
 sub set_pi_data {
 
   # Do not continue on invalid input and render a default 400
