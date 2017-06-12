@@ -5,12 +5,12 @@ info:
   title: API for pusing data to hjernen
 basePath: "/"
 paths:
-  "/set_pi_ip":
+  "/pi":
     post:
       operationId: postPiIp
-      x-mojo-name: post_pi_ip
-      x-mojo-to: pi#set_ip
-      summary: Set current PI ip.
+      x-mojo-name: post_pi
+      x-mojo-to: pi#set_pi_data
+      summary: Set current PI data like IP.
       parameters:
       - in: body
         name: body
@@ -18,9 +18,9 @@ paths:
         schema:
           type: object
           required:
-          - ip
+          - query 
           properties:
-            ip:
+            query:
               $ref: "#/definitions/ip"
       responses:
         '200':

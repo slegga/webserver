@@ -13,7 +13,7 @@ logging {
         level    => "info",
 };
 # TODO Must fix conf file first. Try on liveserver
-# mount 'API::PiData' => {mount_point => '/api'};
+mount 'API::PiData' => {mount_point => '/api'};
 mount "MyApp";
 
 plugin "Toadfarm::Plugin::AccessLog";

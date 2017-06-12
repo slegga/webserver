@@ -3,7 +3,7 @@ use Test::Mojo;
 use FindBin;
  
 # Load application class
-$ENV{CONFIG_DIR}= $FindBin::Bin . '/etc';
+$ENV{MOJO_CONFIG}= $FindBin::Bin . '/etc';
 my $t = Test::Mojo->new('MyApp');
 $t->ua->max_redirects(1);
  

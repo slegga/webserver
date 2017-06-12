@@ -25,7 +25,7 @@ use Encode;
 use Mojo::Util 'secure_compare';
 
 my $USERS;
-my $userfile = $ENV{CONFIG_DIR}||"$FindBin::Bin/../../../etc";
+my $userfile = $ENV{MOJO_CONFIG}||"$FindBin::Bin/../../../etc";
 $userfile .= "/users.yml";
 warn $userfile;
 if (-r $userfile ) {
