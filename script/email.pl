@@ -26,7 +26,8 @@ BEGIN {
         $homedir = $ENV{HOME};
     }
 }
-use lib "$homedir/lib";
+# use lib "$homedir/lib";
+use lib "$ENV{HOME}/git/utillities-perl/lib";
 use SH::Table;
 
 binmode( DATA,   ":encoding(UTF-8)" );
