@@ -24,6 +24,7 @@ sub startup {
     format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
   push @{$self->static->paths}, $self->home->rel_file('static');
   $self->plugin('MyApp::Plugin::Logger');
+  $self->plugin('Mojolicious::Plugin::RemoteAddr');
   $self->secrets($config->{secrets});
   $self->helper(users  => sub { state $users = MyApp::Model::Users->new });
   $self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
