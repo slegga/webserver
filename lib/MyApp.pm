@@ -1,6 +1,7 @@
 package MyApp;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugins;
+use Mojolicious::Plugin::RemoteAddr;
 use MyApp::Model::Info;
 use FindBin;
 
