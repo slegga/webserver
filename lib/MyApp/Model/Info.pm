@@ -16,7 +16,8 @@ sub get_request_info_hr {
   my $self = shift;
   my $c =shift;
   my $hash = $c->tx->req->headers->to_hash;
-  $hash->{remote_address} = $c->remote_addr;# this did only work for ipv4 $c->tx->remote_address;
+  $hash->{remote_address} = $c->tx->remote_address;
+  $hash->{original_remote_address} = $c->tx->original_remote_address;
 
   return $hash;
 }
