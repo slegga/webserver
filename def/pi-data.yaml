@@ -18,9 +18,9 @@ paths:
         schema:
           type: object
           required:
-          - query 
+          - address 
           properties:
-            query:
+            address:
               $ref: "#/definitions/ip"
       responses:
         '200':
