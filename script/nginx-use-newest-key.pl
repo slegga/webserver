@@ -1,10 +1,11 @@
+#!/usr/bin/env perl
+
 =head1 NAME
 
 nginx-use-newest-key.pl
 
 =cut
 
-#!/usr/bin/perl
 
 use strict;
 use warnings;
