@@ -2,7 +2,7 @@ package MyApp::Model::Info;
 use Mojo::Base -base;
 use Mojo::JSON qw(decode_json encode_json);
 use File::Slurp;
-use Data::Dumper;   
+use Data::Dumper;
 
 =head1 info
 
@@ -26,9 +26,11 @@ sub get_pi_status_hr {
   my $self = shift;
   my $c = shift;
   my $file = $c->config->{'pi-status-file'};
-  my $text = read_file($file); 
+
+  my $text={};
+  $text = read_file($file) if -f $file;
   warn "QQQQ: ".$text;
-  $c->log(info=>$text); 
+  $c->log(info=>$text);
   my $hash = decode_json($text);
   return $hash;
 }
