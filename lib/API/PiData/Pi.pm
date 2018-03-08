@@ -1,6 +1,6 @@
 package API::PiData::Pi;
 use Mojo::Base "Mojolicious::Controller";
-use YAML 'Dump';
+use YAML::Tiny 'Dump';
 use autodie;
 use Mojo::JSON;
 
