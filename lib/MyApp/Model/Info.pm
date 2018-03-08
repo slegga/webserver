@@ -27,7 +27,7 @@ sub get_pi_status_hr {
   my $c = shift;
   my $file = $c->config->{'pi-status-file'};
 
-  my $text="{}";
+  my $text='{}';
   $text = read_file($file) if -f $file;
   warn "QQQQ: ".$text;
   $c->log(info=>$text);
