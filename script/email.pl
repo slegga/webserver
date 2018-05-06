@@ -7,7 +7,7 @@ use Encode;
 use 5.018;
 use Net::POP3;
 use MIME::Parser;
-use YAML;
+use YAML::Tiny;
 use Readonly;
 use Carp;
 use utf8;
@@ -58,7 +58,7 @@ my $config_data;
 #     or die "Can't get list of undeleted messages: $!\n";
 eval {
     open my $FH, '< :encoding(UTF-8)', $CONFIGFILE or die "Failed to read $CONFIGFILE: $!";
-    $config_data = YAML::Load(
+    $config_data = YAML::Tiny::Load(
         do { local $/; <$FH> }
     );    # slurp content
 } or do {
