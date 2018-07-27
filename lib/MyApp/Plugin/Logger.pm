@@ -8,7 +8,7 @@ MyApp::Plugin::Logf - Common logging
 
 =head1 SYNOPSIS
 
-  plugin 'Nx::WWW::Plugin::Logf';
+  plugin 'Mojolicious::Plugin::Logf';
 
   get '/path' => sub {
     my $self = shift;
@@ -39,7 +39,7 @@ sub register {
   if($ENV{LOG_LEVEL}) {
     $config->{level} = $ENV{LOG_LEVEL};
   }
-  
+
   my $log = Mojo::Log->new(%$config);
 
   $app->helper(log => sub {
