@@ -1,12 +1,22 @@
 package MyApp::Model::Users;
 
+=head1 NAME
+
+MyApp::Model::Users
+
+=head1 DESCRIPTION
+
+Handle users and security.
+
+=head1 NOTES
+
 =head2 How to generate a google authenticator secret
 
  perl
  $base32_alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
  print substr($base32_alphabet,rand(32),1) for (0..20);
 
-=cut 
+=cut
 
 use strict;
 use warnings;

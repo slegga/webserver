@@ -6,9 +6,15 @@ use MyApp::Model::Info;
 use FindBin;
 
 
-=head1 TESTING
+=head1 NAME
 
-  
+MyApp
+
+=head1 DESRIPTION
+
+Main lib for webserver.
+
+
 
 =cut
 
@@ -29,7 +35,7 @@ sub startup {
   $self->secrets($config->{secrets});
   $self->helper(users  => sub { state $users = MyApp::Model::Users->new });
   $self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
- 
+
   my $r = $self->routes;
   $r->any('/login')->to('login#login')->name('login');
   $r->get('/logout')->to('login#logout');
@@ -37,7 +43,7 @@ sub startup {
   $logged_in->get('/protected')->to('login#protected');
   $logged_in->any('/')->to('login#protected')->name('protected');
   $logged_in->any('/index')->to('info#landing_page');
- 
+
   $logged_in->any('/info')->to('info#info');
   $logged_in->any('/pi-status')->to('info#show_pi_status');
 
@@ -46,5 +52,5 @@ sub startup {
   });
 #  $self->helper(conf => sub {return $config});
 }
- 
+
 1;

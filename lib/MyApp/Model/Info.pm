@@ -4,9 +4,17 @@ use Mojo::JSON qw(decode_json encode_json);
 use File::Slurp;
 use Data::Dumper;
 
-=head1 info
+=head1 NAME
+
+MyApp::Model::Info
+
+=head1 DESCRIPTION
+
+Return requested data as hash
 
 Show info for pi status and all info server knows about client
+
+=head1 METHODS
 
 =cut
 

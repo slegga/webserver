@@ -5,7 +5,11 @@ use HTML::TextToHTML;
 use File::Slurp;
 use Data::Dumper;
 
-=head1 info
+=head1 NAME
+
+MyApp::Controller::Info
+
+=head1 DESCRIPTION
 
 Show info for pi status and all info server knows about client
 
@@ -18,7 +22,7 @@ sub landing_page {
   my $self = shift;
   $self->stash(pagecontent => 'Her kommer det tekst');
   $self->stash(pageobj => '/include/basic');
-  my $req_hr = $self->inform->get_request_info_hr($self); 
+  my $req_hr = $self->inform->get_request_info_hr($self);
   my $pi_status = $self->inform->get_pi_status_hr($self);
   return $self->render(template => 'landing_page');
 }
