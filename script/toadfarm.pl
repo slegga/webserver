@@ -3,6 +3,12 @@ use Toadfarm -init;
 use FindBin;
 BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
 
+=head1 NAME
+
+toadfarm.pl - Master webserver scripts
+
+=cut
+
 my $datestring = localtime();
 print "------------------------------\n";
 print "Started: $datestring\n";
@@ -23,7 +29,7 @@ my @chars = ("A".."Z", "a".."z");
 # May unvalidate all connections
 my $string;
 $string .= $chars[rand @chars] for 1..64;
-secrets ( $string ); 
+secrets ( $string );
 
 start ['http://*:8888'], workers => 1;
 

@@ -2,6 +2,12 @@
 #
 use Mojolicious::Lite;
 
+=head1 NAME
+
+test-layout.pl - Test layouts
+
+=cut
+
 get '/with_layout';
 
 app->start;
