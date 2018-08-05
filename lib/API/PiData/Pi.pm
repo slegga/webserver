@@ -4,6 +4,13 @@ use YAML::Tiny 'Dump';
 use autodie;
 use Mojo::JSON;
 
+=head1 NAME
+
+API::PiData::Pi - Under construction
+
+=cut
+
+
 sub _check_client_ip {
 # TODO
 # get array og Net::IP from config
