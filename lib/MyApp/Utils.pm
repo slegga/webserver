@@ -5,7 +5,7 @@ use Exporter 'import';
 
 =head1 NAME
 
-MyApp::Utils - common webutillities
+MyApp::Utils - common webutilities
 
 =cut
 
