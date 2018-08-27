@@ -5,5 +5,8 @@
      <div class="container">
        <%= content %>
      </div>
+     <footer>
+     DNS powered by <a href='http://freedns.afraid.org/'>Free DNS</a>
+     </footer>
   </body>
 </html>
