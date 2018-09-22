@@ -8,6 +8,12 @@ use Mojo::JSON;
 
 API::PiData::Pi - Under construction
 
+=head1 METHODS
+
+=head2 set_pi_data
+
+Store pi data to file.
+
 =cut
 
 

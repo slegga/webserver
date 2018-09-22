@@ -16,6 +16,14 @@ Show info for pi status and all info server knows about client
 
 =head1 METHODS
 
+=head2 get_request_info_hr
+
+Return request info
+
+=head2 get_pi_status_hr
+
+Return pi status info.
+
 =cut
 
 

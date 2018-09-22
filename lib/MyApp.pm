@@ -14,7 +14,11 @@ MyApp
 
 Main lib for webserver.
 
+=head1 METHODS
 
+=head2 startup
+
+Main loop for Webserver.
 
 =cut
 

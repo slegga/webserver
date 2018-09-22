@@ -10,6 +10,12 @@ Loging module. Handle login request.
 =cut
 
 
+=head2 login
+
+Render login
+
+=cut
+
 sub login {
   my $self = shift;
   my $user = $self->param('user') || '';
@@ -29,6 +35,12 @@ sub login {
   $self->redirect_to('index');
 }
 
+=head2 logged_in
+
+Return if logged in. Return undef if not.
+
+=cut
+
 sub logged_in {
   my $self = shift;
 
@@ -36,6 +48,12 @@ sub logged_in {
   $self->redirect_to('login');
   return undef;
 }
+
+=head2 logout
+
+Log out user.
+
+=cut
 
 sub logout {
   my $self = shift;

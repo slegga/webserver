@@ -27,6 +27,7 @@ use YAML::Tiny;
 use FindBin;
 use Data::Dumper;
 use Encode;
+use Mojo::Base -base;
 #use Mojolicious::Plugin::AccessLog;
 
 # Log to STDERR
@@ -37,7 +38,7 @@ use Mojo::Util 'secure_compare';
 my $USERS;
 my $userfile = $ENV{MOJO_CONFIG}||"$FindBin::Bin/../../../etc";
 $userfile .= "/users.yml";
-warn $userfile;
+# warn $userfile;
 if (-r $userfile ) {
     my $tmp = YAML::Tiny->read( $userfile );
     $USERS = $tmp->[0]->{users};
@@ -48,11 +49,14 @@ if (-r $userfile ) {
           foo       => {type=>,'google' ,secret=>"3RZHGD2DLIMBT4C3GLFDG"},
     };
 }
-warn Dumper $USERS;
+#warn Dumper $USERS;
 #$log->warn( $USERS );
 
+=head2 check
 
-sub new { bless {}, shift }
+Check username and password.
+
+=cut
 
 sub check {
   my ($self, $user, $pass) = @_;
@@ -83,6 +87,12 @@ sub check {
   # Fail
   return undef;
 }
+
+=head2 padd5
+
+Padd for TOPT
+
+=cut
 
 sub padd5 {
     my $token = shift;

@@ -7,6 +7,12 @@ use Exporter 'import';
 
 MyApp::Utils - common webutilities
 
+=head1 FUNCTIONS
+
+=head2 cr2br
+
+Change \n to <BR>
+
 =cut
 
 #format text for html

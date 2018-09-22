@@ -5,6 +5,12 @@ use Mojo::Base "Mojolicious";
 
 API::PiData - For getting data from hjernen
 
+=head1 METHODS
+
+=head2 startup
+
+Main for receive data from pi to hjernen.
+
 =cut
 
 sub startup {

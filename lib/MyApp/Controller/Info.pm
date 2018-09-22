@@ -18,6 +18,13 @@ Show info for pi status and all info server knows about client
 # create a new object
 my $conv = new HTML::TextToHTML();
 
+
+=head2 landing_page
+
+Rener landing page
+
+=cut 
+
 sub landing_page {
   my $self = shift;
   $self->stash(pagecontent => 'Her kommer det tekst');
@@ -27,11 +34,23 @@ sub landing_page {
   return $self->render(template => 'landing_page');
 }
 
+=head2 info
+
+Render info page.
+
+=cut
+
 sub info {
   my $self = shift;
 
   return $self->render('commons/dump_hash', myhash => $self->inform->get_request_info_hr($self) );
 }
+
+=head2 show_pi_status
+
+render pi status page
+
+=cut
 
 sub show_pi_status {
   my $self = shift;
