@@ -22,8 +22,8 @@ Main loop for Webserver.
 
 =cut
 
-my $plugins = Mojolicious::Plugins->new;
-$plugins->namespaces( ['MyApp::Plugin']);
+#my $plugins = Mojolicious::Plugins->new;
+#$plugins->namespaces( ['MyApp::Plugin']);
 use MyApp::Model::Users;
 sub startup {
   my $self = shift;
@@ -35,6 +35,7 @@ sub startup {
     format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
   push @{$self->static->paths}, $self->home->rel_file('static');
   $self->plugin('MyApp::Plugin::Logger');
+  $self->plugin(Status => {route => $self->routes->any('/status')} );
 #  $self->plugin('Mojolicious::Plugin::RemoteAddr');
   $self->secrets($config->{secrets});
   $self->helper(users  => sub { state $users = MyApp::Model::Users->new });

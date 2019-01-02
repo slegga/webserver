@@ -57,6 +57,9 @@
                       <li>
                         <a href="/lyspaerer">Lyspære-regnskap</a>
                     </li>
+                      <li>
+                        <a href="/status">Mojolicious status</a>
+                    </li>
                     <li>
                         <a href="/logout">logout</a>
                     </li>
