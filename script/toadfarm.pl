@@ -1,7 +1,8 @@
 #!/usr/bin/env perl
 use Toadfarm -init;
 use FindBin;
-BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
+use lib "$FindBin::Bin/../../utilities-perl/lib";
+use SH::UseLib;
 
 =head1 NAME
 
@@ -19,7 +20,8 @@ logging {
         level    => "info",
 };
 # TODO Must fix conf file first. Try on liveserver
-mount 'API::PiData' => {mount_point => '/api'};
+mount 'API::PiData' => {mount_point => '/api/pi'};
+mount 'API::Piano' => {mount_point => '/api/piano'};
 mount "MyApp";
 
 plugin "Toadfarm::Plugin::AccessLog";
