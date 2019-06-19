@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
+
 use Toadfarm -init;
-use FindBin;
-use lib "$FindBin::Bin/../../utilities-perl/lib";
+use lib "../utilities-perl/lib";
 use SH::UseLib;
 
 =head1 NAME
