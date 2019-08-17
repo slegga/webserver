@@ -20,8 +20,8 @@ logging {
         level    => "info",
 };
 # TODO Must fix conf file first. Try on liveserver
-mount 'API::PiData' => {mount_point => '/api/pi'};
-mount 'API::Piano' => {mount_point => '/api/piano'};
+mount 'API::PiData' => {mount_point => '/api/pi/'};
+mount 'API::Piano' => {mount_point => '/api/piano/'};
 mount "MyApp";
 
 plugin "Toadfarm::Plugin::AccessLog";
