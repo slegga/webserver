@@ -20,7 +20,7 @@ logging {
         level    => "info",
 };
 # TODO Must fix conf file first. Try on liveserver
-mount 'API::PiData' => {mount_point => '/api/pi/'};
+mount 'API::PiData' => {mount_point => '/api/home/'};
 mount 'API::Piano' => {mount_point => '/api/piano/'};
 mount "MyApp";
 
@@ -34,4 +34,3 @@ $string .= $chars[rand @chars] for 1..64;
 secrets ( $string );
 
 start ['http://*:8888'], workers => 1;
-
