@@ -85,7 +85,7 @@ sub check {
     }
   }
   # Fail
-  return undef;
+  return;
 }
 
 =head2 padd5

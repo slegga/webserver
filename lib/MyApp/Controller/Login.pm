@@ -46,7 +46,7 @@ sub logged_in {
 
   return 1 if $self->session('user');
   $self->redirect_to('login');
-  return undef;
+  return;
 }
 
 =head2 logout
