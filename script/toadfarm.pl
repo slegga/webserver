@@ -24,7 +24,7 @@ mount 'API::PiData' => {mount_point => '/api/home/'};
 mount 'API::Piano' => {mount_point => '/api/piano/'};
 mount "MyApp";
 
-plugin "Toadfarm::Plugin::AccessLog";
+plugin 'Mojolicious::Plugin::AccessLog' => {format=>'%{%Y-%m-%d %T}t %h %{identity}e %r %s %T '};
 
 my @chars = ("A".."Z", "a".."z");
 
