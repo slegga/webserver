@@ -33,4 +33,4 @@ my $string;
 $string .= $chars[rand @chars] for 1..64;
 secrets ( $string );
 
-start ['http://*:8888'], workers => 1, proxy =>'/privat';
+start ['http://*:8888'], workers => 1, proxy =>1;
