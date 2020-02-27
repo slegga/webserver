@@ -44,9 +44,10 @@ sub startup {
   my $r = $self->routes;
   $r->any('/login')->to('login#login')->name('login');
   $r->get('/logout')->to('login#logout');
-  my $logged_in = $r->under('/')->to('login#logged_in');
+  my $logged_in = $r;#disable security ->under('/')->to('login#logged_in');
   $logged_in->get('/protected')->to('login#protected');
   $logged_in->any('/')->to('login#protected')->name('protected');
+  $logged_in->any('/')->to('info#landing_page');
   $logged_in->any('/index')->to('info#landing_page');
 
   $logged_in->any('/info')->to('info#info');
