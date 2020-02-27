@@ -49,19 +49,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/pi-status">Pi status</a>
+                        <a href="<%=url_for('pi-status')%>">Pi status</a>
                     </li>
                     <li>
-                        <a href="/info">Request</a>
+                        <a href="<%=url_for('info')%>">Request</a>
                     </li>
+                      #<li>
+                       # <a href="<%=url_for('lyspearer')%>/lyspaerer">Lyspære-regnskap</a>
+                    #</li>
                       <li>
-                        <a href="/lyspaerer">Lyspære-regnskap</a>
-                    </li>
-                      <li>
-                        <a href="/status">Mojolicious status</a>
+                        <a href="<%=url_for('status')%>">Mojolicious status</a>
                     </li>
                     <li>
-                        <a href="/logout">logout</a>
+                        <a href="/xlogin/logout">logout</a>
                     </li>
                 </ul>
             </div>
