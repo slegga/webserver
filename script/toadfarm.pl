@@ -23,7 +23,8 @@ logging {
 # TODO Must fix conf file first. Try on liveserver
 mount 'API::PiData' => {mount_point => '/api/home/'};
 mount 'API::Piano' => {mount_point => '/api/piano/'};
-mount "MyApp" => {mount_point => '/privat/'};
+my $priv = '/privat/';
+mount "MyApp" => {mount_point => $priv};
 
 plugin 'Mojolicious::Plugin::AccessLog' => {format=>'%{%Y-%m-%d %T}t %h %{identity}e %r %s %T '};
 
@@ -34,4 +35,4 @@ my $string;
 $string .= $chars[rand @chars] for 1..64;
 secrets ( $string );
 
-start ['http://*:8888'], workers => 1, proxy =>1;
+start ['http://*:8888'], workers => 1, proxy =>$priv;
