@@ -55,6 +55,18 @@ sub startup {
   $logged_in->any('/bootstrap' => sub {  my $c = shift;
     $c->reply->static('bootstrap.html');
   });
+
+#  if ( my $path = $ENV{MOJO_REVERSE_PROXY} ) {
+      #my @path_parts = grep /\S/, split m{/}, $path;
+      #app->hook( before_dispatch => sub {
+          #my ( $c ) = @_;
+          #my $url = $c->req->url;
+          #my $base = $url->base;
+          #push @{ $base->path }, @path_parts;
+          #$base->path->trailing_slash(1);
+          #$url->path->leading_slash(0);
+      #});
+  #}
 #  $self->helper(conf => sub {return $config});
 }
 
