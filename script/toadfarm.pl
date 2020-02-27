@@ -14,6 +14,7 @@ my $datestring = localtime();
 print "------------------------------\n";
 print "Started: $datestring\n";
 
+$ENV{MOJO_MODE}='development';
 logging {
         combined => 1,
         file     => "/var/log/toadfarm/pi-webserver.log",
