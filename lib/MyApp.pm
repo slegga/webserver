@@ -57,7 +57,8 @@ sub startup {
     $c->reply->static('bootstrap.html');
   });
 
-	if(1) {
+	#do not need because of toadfarm i guess
+	if(0) {
   		if ( my $path = $ENV{MOJO_REVERSE_PROXY} && $ENV{MOJO_REVERSE_PROXY}!=1) {
 			my @path_parts = grep /\S/, split m{/}, $path;
 			app->hook( before_dispatch => sub {
