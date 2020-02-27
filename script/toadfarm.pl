@@ -22,7 +22,7 @@ logging {
 # TODO Must fix conf file first. Try on liveserver
 mount 'API::PiData' => {mount_point => '/api/home/'};
 mount 'API::Piano' => {mount_point => '/api/piano/'};
-mount "MyApp";
+mount "MyApp" => {mount_point => '/privat/'};
 
 plugin 'Mojolicious::Plugin::AccessLog' => {format=>'%{%Y-%m-%d %T}t %h %{identity}e %r %s %T '};
 
