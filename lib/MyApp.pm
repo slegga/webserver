@@ -1,9 +1,8 @@
 package MyApp;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugins;
-#use Mojolicious::Plugin::RemoteAddr;
 use MyApp::Model::Info;
-use FindBin;
+use MyApp::Model::Users;
 
 
 =head1 NAME
@@ -22,15 +21,36 @@ Main loop for Webserver.
 
 =cut
 
-#my $plugins = Mojolicious::Plugins->new;
-#$plugins->namespaces( ['MyApp::Plugin']);
-use MyApp::Model::Users;
+use Mojo::File 'path';
+my $lib;
+BEGIN {
+    my $gitdir = Mojo::File->curfile;
+    my @cats = @$gitdir;
+    while (my $cd = pop @cats) {
+        if ($cd eq 'git') {
+            $gitdir = path(@cats,'git');
+            last;
+        }
+    }
+    $lib =  $gitdir->child('utilities-perl','lib')->to_string; #return utilities-perl/lib
+};
+
+use lib $lib;
+use SH::UseLib;
+use Model::GetCommonConfig;
+
+has 'config';
+
 sub startup {
   my $self = shift;
-  my $conf_dir = $ENV{MOJO_CONFIG} ? $ENV{MOJO_CONFIG} : $ENV{HOME}.'/etc';
-  my $conf_file = $conf_dir.'/myapp.conf';
-  die "Missing config file: ".$conf_file if !-f $conf_file;
-  my $config = $self->plugin('Mojolicious::Plugin::Config' => {file => $conf_file});
+#  my $conf_dir = $ENV{MOJO_CONFIG} ? $ENV{MOJO_CONFIG} : $ENV{HOME}.'/etc';
+#  my $conf_file = $conf_dir.'/myapp.conf';
+#  die "Missing config file: ".$conf_file if !-f $conf_file;
+  my $gcc = Model::GetCommonConfig->new;
+  my $config = $gcc->get_mojoapp_config($0);
+  $config->{hypnotoad} = $gcc->get_hypnotoad_config($0);
+  $self->config($config);
+  # = $self->plugin('Mojolicious::Plugin::Config' => {file => $conf_file});
   $self->plugin('Mojolicious::Plugin::AccessLog' => {log => $config->{'accesslogfile'},
     format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
   push @{$self->static->paths}, $self->home->rel_file('static');

@@ -1,0 +1,19 @@
+common_config:
+    secrets:
+        - 'this is serect'
+        - 'dont tell'
+    mojo_log_path: '/tmp'
+web_services:
+    api.t:
+        'datadir':          't/data'
+        'isp_ip_range':
+            -   '10.0.0.0 - 10.255.255.255'
+            -   '127.0.0.1 - 127.0.0.255'
+
+    info.t:
+        'pi-status-file':   't/data/pi-status.json'
+        'accesslogfile':    't/data/pi-web-access.log'
+        'datadir':          't/data'
+        'isp_ip_range':
+            -   '10.0.0.0 - 10.255.255.255'
+            -   '127.0.0.1 - 127.0.0.255'

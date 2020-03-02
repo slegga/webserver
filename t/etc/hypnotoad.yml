@@ -1,0 +1,23 @@
+---
+common_config:
+  workers: 4
+  proxy: 1
+web_services:
+  web-login:
+    port: 8102
+    repo: nginx-security
+  web-nginx-guard:
+    port: 8101
+    repo: nginx-security
+  web-api-home:
+    port: 8870
+    repo: webserver
+  web-private:
+    port: 8888
+    repo: webserver
+  info.t:
+    port: 18888
+    repo: webserver
+  api.t:
+    port: 18870
+    repo: webserver
