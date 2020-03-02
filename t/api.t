@@ -2,14 +2,11 @@ use Test::More;
 use Test::Mojo;
 use FindBin;
 
-sub repohomedir {
-	return "FindBin::Bin/..";
-} 
 # Load application class
-$ENV{MOJO_CONFIG} = $FindBin::Bin . '/etc/api.conf';
+$ENV{COMMON_CONFIG_DIR} = $FindBin::Bin . '/etc'; # set config dir to gitrepo
 my $t = Test::Mojo->new('API::PiData');
 $t->ua->max_redirects(1);
-my $ipfile = "$FindBin::Bin/data/pi-status.json","IP file is created";
+my $ipfile = "$FindBin::Bin/data/pi-status.json";
 
 if (-f $ipfile ) {
   unlink($ipfile);

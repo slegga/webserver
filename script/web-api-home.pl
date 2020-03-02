@@ -4,16 +4,30 @@
 
 use strict;
 use warnings;
-use FindBin;
-use lib "$FindBin::Bin/../../utilities-perl/lib";
+use Mojolicious::Commands;
+use Mojo::File 'path';
+
+my $lib;
+BEGIN {
+    my $gitdir = Mojo::File->curfile;
+    my @cats = @$gitdir;
+    while (my $cd = pop @cats) {
+        if ($cd eq 'git') {
+            $gitdir = path(@cats,'git');
+            last;
+        }
+    }
+    $lib =  $gitdir->child('utilities-perl','lib')->to_string;
+};
+use lib $lib;
+
 use SH::UseLib;
 
 # BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
-use Mojolicious::Commands;
 
 =head1 NAME
 
-web-login.pl - Master login. The main webserver script.
+web-api-home.pl - API for get data from home server.
 
 =cut
 
