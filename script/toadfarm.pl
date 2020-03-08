@@ -35,7 +35,7 @@ logging {
         level    => "info",
 };
 # TODO Must fix conf file first. Try on liveserver
-mount 'SH::PiOpenAPI' => {mount_point => '/api/home/'};
+mount 'API::PiData' => {mount_point => '/api/home/'};
 mount 'API::Piano' => {mount_point => '/api/piano/'};
 my $priv = '/privat/';
 mount "MyApp" => {mount_point => $priv};
