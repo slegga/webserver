@@ -38,8 +38,8 @@ BEGIN {
 use lib $lib;
 use SH::UseLib;
 use Model::GetCommonConfig;
+use Mojo::Util 'dumper';
 
-has 'config';
 
 sub startup {
   my $self = shift;
@@ -50,6 +50,7 @@ sub startup {
   my $config = $gcc->get_mojoapp_config($0);
   $config->{hypnotoad} = $gcc->get_hypnotoad_config($0);
   $self->config($config);
+  warn dumper $self->config->{hypnotoad};
   # = $self->plugin('Mojolicious::Plugin::Config' => {file => $conf_file});
   $self->plugin('Mojolicious::Plugin::AccessLog' => {log => $config->{'accesslogfile'},
     format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
