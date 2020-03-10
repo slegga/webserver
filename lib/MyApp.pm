@@ -80,7 +80,7 @@ sub startup {
 
 	#do not need because of toadfarm i guess
 	if(1) {
-  		if ( my $path = $ENV{MOJO_REVERSE_PROXY} && $ENV{MOJO_REVERSE_PROXY}!=1) {
+  		if ( my $path = $self->config->{hypnotoad}->{service_path} ) {
 			my @path_parts = grep /\S/, split m{/}, $path;
 			app->hook( before_dispatch => sub {
 				my ( $c ) = @_;
