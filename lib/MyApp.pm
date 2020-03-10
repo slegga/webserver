@@ -63,11 +63,8 @@ sub startup {
   $self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
 
   my $r = $self->routes;
-  $r->any('/login')->to('login#login')->name('login');
-  $r->get('/logout')->to('login#logout');
-  my $logged_in = $r;#disable security ->under('/')->to('login#logged_in');
+  my $logged_in = $r->under('/' => sub {1});#disable security ->under('/')->to('login#logged_in');
   $logged_in->get('/protected')->to('login#protected');
-  $logged_in->any('/')->to('login#protected')->name('protected');
   $logged_in->any('/')->to('info#landing_page');
   $logged_in->any('/index')->to('info#landing_page');
 
@@ -79,18 +76,16 @@ sub startup {
   });
 
 	#do not need because of toadfarm i guess
-	if(1) {
-  		if ( my $path = $self->config->{hypnotoad}->{service_path} ) {
-			my @path_parts = grep /\S/, split m{/}, $path;
-			app->hook( before_dispatch => sub {
-				my ( $c ) = @_;
-				my $url = $c->req->url;
-				my $base = $url->base;
-				push @{ $base->path }, @path_parts;
-				$base->path->trailing_slash(1);
-				$url->path->leading_slash(0);
-			});
-  		}
+	if ( my $path = $self->config->{hypnotoad}->{service_path} ) {
+		my @path_parts = grep /\S/, split m{/}, $path;
+		app->hook( before_dispatch => sub {
+			my ( $c ) = @_;
+			my $url = $c->req->url;
+			my $base = $url->base;
+			push @{ $base->path }, @path_parts;
+			$base->path->trailing_slash(1);
+			$url->path->leading_slash(0);
+		});
 	}
 }
 
