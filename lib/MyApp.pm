@@ -82,7 +82,8 @@ sub startup {
 			my ( $c ) = @_;
 			my $url = $c->req->url;
 			my $base = $url->base;
-			push @{ $base->path }, @path_parts;
+			$base->path(@path_parts);
+		#	push @{ $base->path }, @path_parts;
 			$base->path->trailing_slash(1);
 			$url->path->leading_slash(0);
 		});
