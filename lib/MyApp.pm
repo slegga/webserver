@@ -78,7 +78,7 @@ sub startup {
 	#do not need because of toadfarm i guess
 	if ( my $path = $self->config->{hypnotoad}->{service_path} ) {
 		my @path_parts = grep /\S/, split m{/}, $path;
-		app->hook( before_dispatch => sub {
+		$self->hook( before_dispatch => sub {
 			my ( $c ) = @_;
 			my $url = $c->req->url;
 			my $base = $url->base;
