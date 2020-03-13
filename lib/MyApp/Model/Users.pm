@@ -36,7 +36,7 @@ use Mojo::Base -base;
 use Mojo::Util 'secure_compare';
 
 my $USERS;
-my $userfile = $ENV{MOJO_CONFIG}||"$FindBin::Bin/../../../etc";
+my $userfile = $ENV{COMMON_CONFIG_DIR}||$ENV{MOJO_CONFIG}||"$FindBin::Bin/../../../etc";
 $userfile .= "/users.yml";
 # warn $userfile;
 if (-r $userfile ) {
