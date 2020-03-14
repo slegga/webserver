@@ -1,8 +1,28 @@
 package MyApp;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugins;
+use Mojo::File 'path';
+use Mojo::Util 'dumper';
+
+my $lib;
+BEGIN {
+    my $gitdir = Mojo::File->curfile;
+    my @cats = @$gitdir;
+    while (my $cd = pop @cats) {
+        if ($cd eq 'git') {
+            $gitdir = path(@cats,'git');
+            last;
+        }
+    }
+    $lib =  $gitdir->child('utilities-perl','lib')->to_string; #return utilities-perl/lib
+};
+
+#warn "######".$lib;
+use lib $lib;
+use SH::UseLib;
 use MyApp::Model::Info;
-use MyApp::Model::Users;
+use Model::Users;
+use Model::GetCommonConfig;
 
 
 =head1 NAME
@@ -21,24 +41,6 @@ Main loop for Webserver.
 
 =cut
 
-use Mojo::File 'path';
-my $lib;
-BEGIN {
-    my $gitdir = Mojo::File->curfile;
-    my @cats = @$gitdir;
-    while (my $cd = pop @cats) {
-        if ($cd eq 'git') {
-            $gitdir = path(@cats,'git');
-            last;
-        }
-    }
-    $lib =  $gitdir->child('utilities-perl','lib')->to_string; #return utilities-perl/lib
-};
-
-use lib $lib;
-use SH::UseLib;
-use Model::GetCommonConfig;
-use Mojo::Util 'dumper';
 
 
 sub startup {
