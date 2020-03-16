@@ -39,16 +39,20 @@ sub get_request_info_hr {
 }
 
 sub get_pi_status_hr {
-  my $self = shift;
-  my $c = shift;
-  my $file = $c->config->{'pi-status-file'};
+	my $self = shift;
+	my $c = shift;
+	my $file = $c->config->{'pi-status-file'};
+	if (! $file) {
+		my $con = $c->config;
+		warn Dumper($con);
+	}
 
-  my $text='{}';
-  $text = read_file($file) if -f $file;
-  warn "QQQQ: ".$text;
-  $c->log(info=>$text);
-  my $hash = decode_json($text);
-  return $hash;
+	my $text='{}';
+	$text = read_file($file) if -f $file;
+	#warn "QQQQ: ".$text;
+	$c->log(info=>$text);
+	my $hash = decode_json($text);
+	return $hash;
 }
 
 
