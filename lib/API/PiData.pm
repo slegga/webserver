@@ -42,11 +42,11 @@ sub startup {
 	my $app = shift;
 	my $gcc = Model::GetCommonConfig->new;
 	my $config = $gcc->get_mojoapp_config($0);
-	$config->{hypnotoad} = $gcc->get_hypnotoad_config($0);
-	my $config_file = path('/tmp/test-webserver.conf');#Mojo::File->tempfile(DIR => '/tmp');
-	$config_file->spurt(dumper $config);
+	$app->config($config);
+#	my $config_file = path('/tmp/test-webserver.conf');#Mojo::File->tempfile(DIR => '/tmp');
+#	$config_file->spurt(dumper $config);
 
-	$app->plugin(Config => {file=>"$config_file"});
+#	$app->plugin(Config => {file=>"$config_file"});
 
 	$app->plugin("OpenAPI" => {url => $app->home->rel_file("def/pi-data.yaml")});
 

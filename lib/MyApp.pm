@@ -52,7 +52,8 @@ sub startup {
   my $config = $gcc->get_mojoapp_config($0);
   $config->{hypnotoad} = $gcc->get_hypnotoad_config($0);
   $self->config($config);
-  warn dumper $self->config->{hypnotoad};
+  $self->secrets($config->{secrets});
+#  warn dumper $self->config->{hypnotoad};
   # = $self->plugin('Mojolicious::Plugin::Config' => {file => $conf_file});
   $self->plugin('Mojolicious::Plugin::AccessLog' => {log => $config->{'accesslogfile'},
     format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
@@ -60,7 +61,6 @@ sub startup {
   $self->plugin('MyApp::Plugin::Logger');
   $self->plugin(Status => {route => $self->routes->any('/status')} );
 #  $self->plugin('Mojolicious::Plugin::RemoteAddr');
-  $self->secrets($config->{secrets});
   $self->helper(users  => sub { state $users = MyApp::Model::Users->new });
   $self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
 
