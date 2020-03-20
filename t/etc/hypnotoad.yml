@@ -21,3 +21,6 @@ web_services:
   api.t:
     port: 18870
     repo: webserver
+  webserver.t:
+    port: 8880
+    service_path: webserver
