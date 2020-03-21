@@ -18,13 +18,13 @@ BEGIN {
 };
 use lib $lib;
 use SH::UseLib;
+use Mojolicious::Commands;
+#use Mojolicious::Lite;
+#use Model::GetCommonConfig;
+#my $cfg = Model::GetCommonConfig->new->get_mojoapp_config($0);
+#app->routes->route($cfg->{hypnotoad}->{service_path})->detour('MyApp',{secrets=>$cfg->{secrets} });
 
-use Mojolicious::Lite;
-use Model::GetCommonConfig;
-my $cfg = Model::GetCommonConfig->new->get_mojoapp_config($0);
-app->routes->route($cfg->{hypnotoad}->{service_path})->detour('MyApp',{secrets=>$cfg->{secrets} });
-
-app->start;
+#app->start;
 
 =head1 NAME
 
@@ -33,5 +33,5 @@ web-login.pl - Master login. The main webserver script.
 =cut
 
 # Start command line interface for application
-#Mojolicious::Commands->start_app('MyApp');
+Mojolicious::Commands->start_app('MyApp');
 
