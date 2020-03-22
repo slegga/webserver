@@ -23,7 +23,7 @@ use SH::UseLib;
 use MyApp::Model::Info;
 use Model::Users;
 use Model::GetCommonConfig;
-
+use Data::Dumper;
 
 =head1 NAME
 
@@ -45,10 +45,21 @@ Main loop for Webserver.
 
 sub startup {
 	my $self = shift;
-	my $gcc = Model::GetCommonConfig->new;
-	my $config = $gcc->get_mojoapp_config($0);
-	$self->config($config);
+	my $config =  $self->config;
+
+	if ( scalar keys %{$config} < 3 ) {
+		say STDERR Dumper $config;
+		my $gcc = Model::GetCommonConfig->new;
+		$config = $gcc->get_mojoapp_config($0,{debug=>1});
+
+		$self->config($config);
+	} else {
+		$config = $self->config;
+	}
 	$self->secrets($config->{secrets});
+	$self->log->path($config->{mojo_log_path});
+	$self->log->info('(Re)Start server');
+
 	$self->plugin('Mojolicious::Plugin::AccessLog' => {log => $config->{'accesslogfile'},
 	  format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
 	push @{$self->static->paths}, $self->home->rel_file('static');

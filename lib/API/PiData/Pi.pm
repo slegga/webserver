@@ -42,7 +42,7 @@ sub set_pi_data {
 	# $c->openapi->valid_input copies valid data to validation object,
 	# and the normal Mojolicious api works as well.
 	my $body = $c->validation->output->{body};
-	warn Dump $c->config;
+	say STDERR Dump $c->config;
 	my $pi_file = $c->config->{'datadir'} ? $c->config->{'datadir'}.'/pi-status.json' : $ENV{HOME}.'/etc/pi-status.json';
 	open my $fh,'>', $pi_file;
 	print $fh Mojo::JSON::to_json($body);
