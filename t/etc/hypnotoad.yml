@@ -12,9 +12,9 @@ web_services:
   web-api-home:
     port: 8870
     repo: webserver
-  web-private:
+  MyApp:
     port: 8888
-    repo: webserver
+    service_path: privat
   info.t:
     port: 18888
     repo: webserver

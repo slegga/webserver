@@ -68,9 +68,8 @@ sub startup {
 	$self->plugin(Status => {route => $self->routes->any('/status')} );
 	$self->helper(users  => sub { state $users = MyApp::Model::Users->new });
 	$self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
-
-	my $r = $self->routes;
-	my $logged_in = $r->under('/' => sub {
+	my $spath = $config->{hypnotoad}->{service_path};
+	my $logged_in = $self->routes->under("/$spath" => sub {
 		my $c = shift;
 		return 1 if $c->user;
 		$c->render(status=>401, text=>'Unauthorized');
