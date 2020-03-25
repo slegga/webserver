@@ -72,7 +72,7 @@ sub startup {
 	my $logged_in = $self->routes->under("/$spath" => sub {
 		my $c = shift;
 		return 1 if $c->user;
-		return $c->render_unauthenticated;
+		return $c->unauthenticated;
 		return;
 	});
 	$logged_in->get('/protected')->to('login#protected');
