@@ -75,7 +75,6 @@ sub startup {
 		return $c->unauthenticated;
 		return;
 	});
-	$logged_in->get('/protected')->to('login#protected');
 	$logged_in->any('/')->to('info#landing_page');
 	$logged_in->any('/index')->to('info#landing_page');
 
