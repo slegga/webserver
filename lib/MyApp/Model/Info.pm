@@ -44,7 +44,7 @@ sub get_pi_status_hr {
 	my $file = $c->config->{'pi-status-file'};
 	if (! $file) {
 		my $con = $c->config;
-		#warn Dumper($con);
+		die Dumper($con);
 	}
 
 	my $text='{}';

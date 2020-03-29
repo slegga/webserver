@@ -61,7 +61,7 @@
                         <a href="<%=url_for('status')%>">Mojolicious status</a>
                     </li>
                     <li>
-                        <a href="<%= url_for('/xlogin/logout')->to_abs->to_string %>">logout</a>
+                        <a href="<%= url_logout() %>">logout</a>
                     </li>
                 </ul>
             </div>
