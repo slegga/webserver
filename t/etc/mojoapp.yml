@@ -3,6 +3,7 @@ common_config:
         - 'this is serect'
         - 'dont tell'
     mojo_log_path: '/tmp'
+    login_path:    '/xlogin'
 web_services:
     api.t:
         'datadir':          't/data'

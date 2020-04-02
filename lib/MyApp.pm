@@ -64,7 +64,7 @@ sub startup {
 	  format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
 	push @{$self->static->paths}, $self->home->rel_file('static');
 	$self->plugin('MyApp::Plugin::Logger');
-	$self->plugin('Mojolicious::Plugin::Security');
+	$self->plugin('Mojolicious::Plugin::Security'=>{main_module=> __PACKAGE__ });
 	$self->plugin(Status => {route => $self->routes->any('/status')} );
 	$self->helper(users  => sub { state $users = MyApp::Model::Users->new });
 	$self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
