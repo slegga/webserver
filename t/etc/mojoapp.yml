@@ -3,6 +3,7 @@ common_config:
         - 'this is serect'
         - 'dont tell'
     mojo_log_path: '/tmp'
+    login_path:    '/xlogin'
 web_services:
     api.t:
         'datadir':          't/data'
@@ -17,7 +18,7 @@ web_services:
         'isp_ip_range':
             -   '10.0.0.0 - 10.255.255.255'
             -   '127.0.0.1 - 127.0.0.255'
-    web-private:
+    MyApp:
         'pi-status-file':   't/data/pi-status.json'
         'accesslogfile':    't/data/pi-web-access.log'
         'datadir':          't/data'
