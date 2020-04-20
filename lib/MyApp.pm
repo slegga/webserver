@@ -21,7 +21,7 @@ BEGIN {
 use lib $lib;
 use SH::UseLib;
 use MyApp::Model::Info;
-use Model::Users;
+
 use Model::GetCommonConfig;
 use Data::Dumper;
 
@@ -66,7 +66,6 @@ sub startup {
 	$self->plugin('MyApp::Plugin::Logger');
 	$self->plugin('Mojolicious::Plugin::Security'=>{main_module_name=> __PACKAGE__ });
 	$self->plugin(Status => {route => $self->routes->any('/status')} );
-	$self->helper(users  => sub { state $users = MyApp::Model::Users->new });
 	$self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
 	my $spath = $config->{hypnotoad}->{service_path};
 	my $logged_in = $self->routes->under("/$spath" => sub {
