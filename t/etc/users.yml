@@ -1,0 +1,18 @@
+users:
+    admin:
+        type: password
+        secret: lulz
+        groups:
+        -    all
+    deadly:
+        type: password
+        secret: secr3t
+        groups:
+        -    notsosecret
+    totper:
+        type: totp
+        secret: 3RZHGD2DLIMBT4C3GLFDG
+    googleauth:
+        type: oauth2_google
+        groups:
+        - area1

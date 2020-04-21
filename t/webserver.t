@@ -28,7 +28,7 @@ use Model::GetCommonConfig;
 
 $ENV{COMMON_CONFIG_DIR} ='t/etc';
 $ENV{TEST_INSECURE_COOKIES}=1;
-my $user = 'marcus';
+my $user = 'admin';
 my $cfg = Model::GetCommonConfig->new->get_mojoapp_config('MyApp');
 my $spath = $cfg->{hypnotoad}->{service_path};
 my $secret = (split(/[\n\s]+/,path($ENV{COMMON_CONFIG_DIR},'secrets.txt')->slurp))[0];
