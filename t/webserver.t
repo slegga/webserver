@@ -46,4 +46,7 @@ $t->ua->on(start => sub {
 
 
 $t->get_ok("/$spath")->status_is(200)->content_like(qr'Hammer')->content_like(qr'/privat/info')->content_like(qr'/privat/pi-status');
+$t->get_ok("/$spath/index")->status_is(200);
+
+
 done_testing;
