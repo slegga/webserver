@@ -64,15 +64,15 @@ sub startup {
 	  format => ' %h %u %{%c}t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'});
 	push @{$self->static->paths}, $self->home->rel_file('static');
 	$self->plugin('MyApp::Plugin::Logger');
-	$self->plugin('Mojolicious::Plugin::Security'=>{main_module_name=> __PACKAGE__ });
+	$self->plugin('Mojolicious::Plugin::Security'=>{main_module_name=> __PACKAGE__, authorized_groups =>['all'] });
 	$self->plugin(Status => {route => $self->routes->any('/status')} );
 	$self->helper(inform =>  sub { state $info = MyApp::Model::Info->new });
 	my $spath = $config->{hypnotoad}->{service_path};
 	my $logged_in = $self->routes->under("/$spath" => sub {
 		my $c = shift;
-		return 1 if $c->user;
-		return $c->unauthenticated;
-		return;
+		return $c->unauthenticated if ! $c->user;
+		return $c->unauthorized    if ! $c->is_authorized;
+		return 1; # grant access
 	});
 	$logged_in->any('/')->to('info#landing_page');
 	$logged_in->any('/index')->to('info#landing_page');
