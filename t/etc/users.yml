@@ -16,3 +16,6 @@ users:
         type: oauth2_google
         groups:
         - area1
+    nobody:
+        type: password
+        secret: xxx

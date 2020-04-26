@@ -4,7 +4,7 @@
 <li>Her skal de viktigste pi statusene dukke opp </li>
 <li>Litt info om vær</li>
 <li>Mail headere</li>
-%= include 'commons/dump_hash', myhash => {this =>'is a test'}
-%= include 'commons/dump_hash', 'Din bruker' => user
+% my $user = user;
+%= include 'commons/dump_hash', myhash => $user
 </lu>
 <P>
