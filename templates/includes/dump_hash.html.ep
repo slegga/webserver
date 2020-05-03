@@ -1,8 +1,14 @@
 % for my $key (sort keys %$myhash) {
+% next if $key eq 'secret';
+% next if $key eq 'password';
 <div class="row">
 <div class="col-sm-2 text-right" >
 %= label_for $key => $key
 </div>
+% if (! ref $myhash->{$key}) {
 %= text_field $myhash->{$key}  => $myhash->{$key}, class=>"col-sm-4"
+% } elsif(ref $myhash->{$key} eq 'ARRAY') {
+%= text_field $myhash->{$key}  => join(', ', @{$myhash->{$key}}), class=>"col-sm-4"
+% }
 </div>
 % }

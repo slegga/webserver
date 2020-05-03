@@ -5,6 +5,6 @@
 <li>Litt info om vær</li>
 <li>Mail headere</li>
 % my $user = user;
-%= include 'commons/dump_hash', myhash => $user
+%= include 'includes/dump_hash', myhash => $user
 </lu>
 <P>
