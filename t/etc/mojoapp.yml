@@ -4,6 +4,7 @@ common_config:
         - 'dont tell'
     mojo_log_path: '/tmp'
     login_path:    '/xlogin'
+    login_db_dir: 't/etc'
 web_services:
     api.t:
         'datadir':          't/data'

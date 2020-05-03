@@ -24,6 +24,13 @@ use SH::UseLib;
 
 use Model::GetCommonConfig;
 
+$ENV{COMMON_CONFIG_DIR} ='t/etc';
+$ENV{TEST_INSECURE_COOKIES}=1;
+
+my $db = Mojo::SQLite->new($ENV{COMMON_CONFIG_DIR}.'/session_store.db')->db;
+$db->query($_) for split(/\;/, path('t/sql/table_defs.sql')->slurp);
+my $user ='admin';
+$db->insert('sessions',{sid=>'123', username=>$user, status=>'active'});
 # login with jwt
 
 $ENV{COMMON_CONFIG_DIR} ='t/etc';
@@ -32,7 +39,7 @@ my $user = 'admin';
 my $cfg = Model::GetCommonConfig->new->get_mojoapp_config('MyApp');
 my $spath = $cfg->{hypnotoad}->{service_path};
 my $secret = (split(/[\n\s]+/,path($ENV{COMMON_CONFIG_DIR},'secrets.txt')->slurp))[0];
-my $jwt = Mojo::JWT->new(claims=>{user=>$user,expires => time + 60},secret=>$secret)->encode;
+my $jwt = Mojo::JWT->new(claims=>{sid=>'123',expires => time + 60},secret=>$secret)->encode;
 my $cookie = Mojo::Cookie::Request->new({name=>'sso-jwt-token',value=>$jwt});
 diag "jwt:" . $jwt;
 my $t = Test::Mojo->new('MyApp',$cfg);#Mojo::File->new('script/web-private.pl'));
@@ -41,8 +48,6 @@ $t->ua->on(start => sub {
 	$tx->req->headers->header('X-Original-URI','http://dilldall.no');
 	$tx->req->cookies($cookie);
 	});
-
-#$t->get_ok('/')->status_is(401)->content_like(qr'Unauthorized');
 
 
 $t->get_ok("/$spath")->status_is(200)->content_like(qr'Hammer');

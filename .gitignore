@@ -21,3 +21,4 @@ nytprof.out
 /t/data/*.log
 *.swp
 *.pid
+t/etc/session_store.db
