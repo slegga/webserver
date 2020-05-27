@@ -35,7 +35,7 @@ $db->insert('sessions',{sid=>'123', username=>$user, status=>'active'});
 
 $ENV{COMMON_CONFIG_DIR} ='t/etc';
 $ENV{TEST_INSECURE_COOKIES}=1;
-my $user = 'admin';
+$user = 'admin';
 my $cfg = Model::GetCommonConfig->new->get_mojoapp_config('MyApp');
 my $spath = $cfg->{hypnotoad}->{service_path};
 my $secret = (split(/[\n\s]+/,path($ENV{COMMON_CONFIG_DIR},'secrets.txt')->slurp))[0];
