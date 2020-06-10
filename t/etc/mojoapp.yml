@@ -29,3 +29,7 @@ web_services:
     webserver.y:
         authorized_groups:
         - all
+    webserver-morbo:
+        'pi-status-file':   't/data/pi-status.json'
+        'accesslogfile':    't/data/pi-web-access.log'
+        'datadir':          't/data'

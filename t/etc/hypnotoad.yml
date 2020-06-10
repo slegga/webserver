@@ -24,3 +24,5 @@ web_services:
   webserver.t:
     port: 8880
     service_path: webserver
+  webserver-morbo:
+    service_path: pr
