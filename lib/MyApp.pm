@@ -33,6 +33,14 @@ MyApp
 
 Main lib for webserver.
 
+=head2 Testing
+
+morbo script/webserver-morbo.pl
+
+=head1 ENVIRONMENT
+
+=head2 NO_SECURITY - turn of security if set.
+
 =head1 METHODS
 
 =head2 startup
@@ -70,6 +78,7 @@ sub startup {
 	my $spath = $config->{hypnotoad}->{service_path};
 	my $logged_in = $self->routes->under("/$spath" => sub {
 		my $c = shift;
+		return 1 if $ENV{NO_SECURITY};
 		return $c->unauthenticated if ! $c->user;
 		return $c->unauthorized    if ! $c->is_authorized;
 		return 1; # grant access
