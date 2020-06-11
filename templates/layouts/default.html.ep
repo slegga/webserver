@@ -50,6 +50,9 @@
                     <a class="nav-link" href="<%=url_abspath('status')%>">Mojolicious status</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<%= url_login() %>">Oversikt</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<%= url_logout() %>">logout</a>
                 </li>
             </ul>
