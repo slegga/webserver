@@ -16,14 +16,14 @@ Show info for pi status and all info server knows about client
 =cut
 
 # create a new object
-my $conv = new HTML::TextToHTML();
+my $conv = HTML::TextToHTML->new;
 
 
 =head2 landing_page
 
 Rener landing page
 
-=cut 
+=cut
 
 sub landing_page {
   my $self = shift;
