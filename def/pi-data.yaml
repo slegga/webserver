@@ -14,11 +14,11 @@ paths:
       parameters:
       - in: body
         name: body
-        required: 'true'
+        required: true
         schema:
           type: object
           required:
-          - address 
+          - address
           properties:
             address:
               $ref: "#/definitions/ip"
