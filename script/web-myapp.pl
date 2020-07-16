@@ -25,3 +25,16 @@ use Mojolicious::Commands;
 # Start command line interface for application
 Mojolicious::Commands->start_app('MyApp');
 
+=head1 NAME
+
+web-myapp.pl - Starter program for webserver
+
+=head1 DESCRIPTION
+
+Starter program nothing else.
+
+=head1 Testing
+
+TEST_USER=stein morbo script/web-myapp.pl
+
+http://127.0.0.1:3000/privat/index

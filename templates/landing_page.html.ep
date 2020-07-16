@@ -3,6 +3,7 @@
 <lu>
 <li>Her skal de viktigste pi statusene dukke opp </li>
 <li>Litt info om vær</li>
+Dag: <%= $day%> Uke <%= $week %>, <%=$date %>
 <li>Mail headere</li>
 % my $user = user;
 %= include 'includes/dump_hash', myhash => $user

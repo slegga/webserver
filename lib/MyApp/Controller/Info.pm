@@ -4,6 +4,7 @@ use Mojo::JSON qw(decode_json encode_json);
 use HTML::TextToHTML;
 use File::Slurp;
 use Data::Dumper;
+use POSIX 'strftime';
 
 =head1 NAME
 
@@ -31,6 +32,14 @@ sub landing_page {
   $self->stash(pageobj => '/include/basic');
   my $req_hr = $self->inform->get_request_info_hr($self);
   my $pi_status = $self->inform->get_pi_status_hr($self);
+  my @now = localtime;
+  my @fulldate = split(" ", localtime(time));
+  my $week = strftime('%V',@now);
+  my $daymonth = strftime('%d',@now);
+  my @months=qw/januar februar mars april mai juni juli august september oktober november desember/;
+  my %days = ("Mon", "mandag", "Tue", "tirsdag", "Wed", "onsdag", "Thu"
+  , "torsdag", "Fri", "Fredag", "Sat", "lørdag", "Sun", "søndag");
+  $self->stash({week=>$week, day=>$days{$fulldate[0]}, date=>"$daymonth $months[$now[4]] ".(1900 + $now[5])});
   return $self->render(template => 'landing_page');
 }
 
