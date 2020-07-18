@@ -47,10 +47,8 @@ $t->ua->on(start => sub {
 	$tx->req->cookies($cookie);
 	});
 
-#$t->get_ok('/')->status_is(401)->content_like(qr'Unauthorized');
 
-
-$t->get_ok("/$spath")->status_is(200)->content_like(qr'all');
+$t->get_ok("/$spath")->status_is(403)->content_like(qr'You are not ');
 
 
 done_testing;

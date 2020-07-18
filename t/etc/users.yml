@@ -19,3 +19,4 @@ users:
     nobody:
         type: password
         secret: xxx
+        groups:

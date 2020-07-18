@@ -15,6 +15,8 @@ web_services:
   MyApp:
     port: 8888
     service_path: privat
+    accepted_groups:
+    - all
   info.t:
     port: 18888
     repo: webserver
@@ -25,4 +27,8 @@ web_services:
     port: 8880
     service_path: webserver
   webserver-morbo:
-    service_path: pr
+    service_path: privat
+  webserver-nobody.t:
+    server_path: privat
+    authorized_groups:
+    - all
