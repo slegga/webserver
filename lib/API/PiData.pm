@@ -25,6 +25,15 @@ use Model::GetCommonConfig;
 
 API::PiData - For getting data from hjernen
 
+=head1 SYNOPSIS
+
+    use Mojoliciou::Commans;
+    Mojolicious::Commands->start_app('API::PiData');
+
+=head1 DESCRIPTION
+
+Application class for API on hjernen for receiving data.
+
 =head1 ATTRIBUTES
 
 =cut

@@ -1,10 +1,10 @@
 package MyApp::Plugin::Logger;
+use Mojo::Base 'Mojolicious::Plugin';
+use Mojo::Log;
 
 =head1 NAME
 
 MyApp::Plugin::Logf - Common logging
-
-=head1 DESCRIPTION
 
 =head1 SYNOPSIS
 
@@ -15,17 +15,17 @@ MyApp::Plugin::Logf - Common logging
     $self->log->info('Hey!');
   };
 
-=cut
+=head1 DESCRIPTION
 
-use Mojo::Base 'Mojolicious::Plugin';
-use Mojo::Log;
-
+Plugin for logging.
 
 =head1 METHODS
 
 =head2 register
 
 See L</SYNOPSIS>.
+
+Environment variabel LOG_LEVEL adjust which log level to use. See Mojo::Log for optionns.
 
 =cut
 
@@ -45,8 +45,6 @@ sub register {
   $app->helper(log => sub {
     return $log;
   });
-
-
 }
 
 1;

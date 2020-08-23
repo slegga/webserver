@@ -6,6 +6,10 @@ use Mojolicious::Lite;
 
 test-layout.pl - Test layouts
 
+=head1 DESCRIPTION
+
+Simple test script of mojolcicious.
+
 =cut
 
 get '/with_layout';

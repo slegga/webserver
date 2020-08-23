@@ -4,6 +4,10 @@
 
 nginx-use-newest-key.pl
 
+=head1 DESCRIPTION
+
+Get newest info about last certificate from certbot.
+
 =cut
 
 
@@ -35,6 +39,7 @@ my $nginxconf = path('/etc/nginx/nginx.conf')->slurp;
 $nginxconf =~ s/\d\d\d\d\\_key\-certbot.pem/$name/gm;
 
 path('/etc/nginx/nginx.conf')->spurt($nginxconf);
+
 =head1 AUTHOUR
 
 Stein Hammer

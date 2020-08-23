@@ -35,6 +35,6 @@ Starter program nothing else.
 
 =head1 Testing
 
-TEST_USER=stein morbo script/web-myapp.pl
+TEST_USER=me morbo CONFIG_DIR=t/etc script/web-myapp.pl
 
 http://127.0.0.1:3000/privat/index

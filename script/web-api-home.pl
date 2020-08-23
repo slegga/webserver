@@ -29,6 +29,10 @@ use SH::UseLib;
 
 web-api-home.pl - API for get data from home server.
 
+=head1 DESCRIPTION
+
+Not in use. Maybe in the fuure for exporting emails to piano.
+
 =cut
 
 # Start command line interface for application

@@ -10,21 +10,31 @@ use POSIX 'strftime';
 
 MyApp::Controller::Info
 
+=head1 SYNOPSIS
+
+    use Mojo::Base 'Mojolicious';
+    sub startup {
+        my $self= shift;
+    	$self->routes->any('/index')->to('info#landing_page');
+    }
+
 =head1 DESCRIPTION
 
-Show info for pi status and all info server knows about client
+Mojolicious controller class. Show info for pi status and all info server knows about client
 
 =cut
 
-# create a new object
-my $conv = HTML::TextToHTML->new;
-
+=head1 METHODS
 
 =head2 landing_page
 
 Rener landing page
 
 =cut
+
+# create a new object
+my $conv = HTML::TextToHTML->new;
+
 
 sub landing_page {
   my $self = shift;

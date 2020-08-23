@@ -6,7 +6,23 @@ use Mojo::JSON;
 
 =head1 NAME
 
-API::PiData::Pi - Under construction
+API::PiData::Pi - Receive data about PI server.
+
+=head1 SYNOPSIS
+
+    # Application
+    package MyApp;
+    use Mojo::Base 'Mojolicious', -signatures;
+    use API::PiData::Pi;
+
+    # Route
+    sub startup ($self) {
+        $self->routes->post('/pidata')->to('PI#set_pi_data');
+    }
+
+=head1 DESCRIPTION
+
+This is a controller class. Ment to be dispatched to from mojolicious application class in route definiton.
 
 =head1 METHODS
 

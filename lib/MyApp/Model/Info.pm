@@ -6,7 +6,14 @@ use Data::Dumper;
 
 =head1 NAME
 
-MyApp::Model::Info
+MyApp::Model::Info - Returns data about info.
+
+=head1 SYNOPSIS
+
+    use MyApp::Model::Info;
+    use Data::Dumper;
+    my $x = MyApp::Model::Info->new;
+    say Dumper $x->get_pi_status_hr($c);
 
 =head1 DESCRIPTION
 
@@ -49,7 +56,6 @@ sub get_pi_status_hr {
 
 	my $text='{}';
 	$text = read_file($file) if -f $file;
-	#warn "QQQQ: ".$text;
 	$c->log(info=>$text);
 	my $hash = decode_json($text);
 	return $hash;

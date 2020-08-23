@@ -27,9 +27,15 @@ use Data::Dumper;
 
 =head1 NAME
 
-MyApp
+MyApp - Application class for personal webserver.
 
-=head1 DESRIPTION
+=head1 SYNOPSIS
+
+    use Mojolicious::Commands;
+    use MyApp;
+    Mojolicious::Commands->start_app('MyApp');
+
+=head1 DESCRIPTION
 
 Main lib for webserver.
 
