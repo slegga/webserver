@@ -12,7 +12,7 @@ if (-f $ipfile ) {
   unlink($ipfile);
 }
 
-$t->post_ok('/pi' => json => {address => '1.10.100.101'})
+$t->post_ok('/pi' => json => {address => '1.10.100.101',a_time=>"2020-01-16 23:12:01"})
   ->status_is(200)->content_is('"ok"');
 ok(-f $ipfile, "IP file is created");
 done_testing();
