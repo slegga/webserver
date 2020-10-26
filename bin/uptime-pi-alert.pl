@@ -52,7 +52,7 @@ option 'dryrun!', 'Print to screen instead of doing changes';
 sub main {
     my $self = shift;
     my @e = @{ $self->extra_options };
-    my $file = $self->config->{web_services}->{'web-myapp'}->{'pi-status-file'};
+    my $file = $self->config->{web_services}->{'MyApp'}->{'pi-status-file'};
     $file =~ s|\$\{HOME\}|$ENV{HOME}|;
     say $file;
     my $time = decode_json(path($file)->slurp)->{a_time};
