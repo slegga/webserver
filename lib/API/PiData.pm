@@ -27,7 +27,7 @@ API::PiData - For getting data from hjernen
 
 =head1 SYNOPSIS
 
-    use Mojoliciou::Commans;
+    use Mojolicious::Commands;
     Mojolicious::Commands->start_app('API::PiData');
 
 =head1 DESCRIPTION

@@ -10,7 +10,7 @@ MyApp::Utils - common webutilities
 
 =head1 SYNOPSIS
 
-    use MyAPP::Utils;
+    use MyApp::Utils;
     say MyApp::Utils::cr2br('some text.
     Which is breaking');
 

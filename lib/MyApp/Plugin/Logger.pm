@@ -8,6 +8,7 @@ MyApp::Plugin::Logf - Common logging
 
 =head1 SYNOPSIS
 
+  use Mojolicious::Lite;
   plugin 'Mojolicious::Plugin::Logf';
 
   get '/path' => sub {
