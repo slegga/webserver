@@ -3,6 +3,7 @@ use Mojo::Base "Mojolicious::Controller";
 use YAML::Tiny 'Dump';
 use autodie;
 use Mojo::JSON;
+use YAML::Syck;
 
 =head1 NAME
 
@@ -60,9 +61,22 @@ sub set_pi_data {
 	my $body = $c->validation->output->{body};
 	say STDERR Dump $c->config;
 	my $pi_file = $c->config->{'datadir'} ? $c->config->{'datadir'}.'/pi-status.json' : $ENV{HOME}.'/etc/pi-status.json';
+
 	open my $fh,'>', $pi_file;
 	print $fh Mojo::JSON::to_json($body);
 	close $fh;
+
+	my $pi_history = $c->config->{'datadir'} ? $c->config->{'datadir'}.'/pi-history.yml' : $ENV{HOME}.'/etc/pi-history.yml';
+
+	# readfile, add data, sort, write
+	my $history_yaml=();
+	$history_yaml = LoadFile("$pi_history") if -f "$pi_history";
+	my $temp = $body->{temp};
+	$temp =~ s/\D+$//g;
+	push (@$history_yaml,[Mojo::Date->new($body->{a_time})->epoch, $temp]);
+
+	#@$history_yaml = sort{$a->[0] <=> $b[0]} @$history_yaml;
+	DumpFile("$pi_history",$history_yaml);
   # $output will be validated by the OpenAPI spec before rendered
   $c->render(openapi => 'ok');
 }
