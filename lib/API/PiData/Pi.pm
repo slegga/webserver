@@ -54,9 +54,6 @@ sub set_pi_data {
 
 	# IP check goes here
 	my $spec = $c->openapi->spec;
-	#  unless ($spec->{'x-opening-hour'} == (localtime)[2]) {
-	#    return $c->render(openapi => [], status => 498);
-	#  }
 
 	# $c->openapi->valid_input copies valid data to validation object,
 	# and the normal Mojolicious api works as well.
@@ -75,7 +72,7 @@ sub set_pi_data {
     	my $temp = $body->{temp};
     	$temp =~ s/\D+$//g;
     	open my $fh,'>>',$pi_history;
-    	printf $fh "%s;%s",Mojo::Date->new($body->{a_time})->epoch, $temp;
+    	printf $fh "%s;%s\n",Mojo::Date->new($body->{a_time})->epoch, $temp;
         close $fh;
     }
     $c->render(openapi => 'ok');
