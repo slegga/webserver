@@ -24,8 +24,8 @@ use DateTime;
 use DateTime::Format::MySQL;
 use open qw(:std :utf8);
 use YAML::Syck;
+use Mojo::Date;
 
-use  YAML::Tiny;
 
 #use Carp::Always;
 
@@ -58,7 +58,7 @@ sub main {
     say $file;
     my $time = decode_json(path($file)->slurp)->{a_time};
 #    say STDERR $time;
-    my $last_pi_epoch=DateTime::Format::MySQL->parse_datetime( $time )->epoch;
+    my $last_pi_epoch=Mojo::Date->new($time )->epoch;
 
 # 2003-01"$last_pi_epoch";
     if ($last_pi_epoch < time - 2 * 60 * 60) {
