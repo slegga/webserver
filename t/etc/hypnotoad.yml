@@ -12,7 +12,7 @@ web_services:
   web-api-home:
     port: 8870
     repo: webserver
-  MyApp:
+  web-myapp:
     port: 8888
     service_path: privat
     accepted_groups:

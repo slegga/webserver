@@ -36,7 +36,7 @@ $db->insert('sessions',{sid=>'123', username=>$user, status=>'active'});
 $ENV{COMMON_CONFIG_DIR} ='t/etc';
 $ENV{TEST_INSECURE_COOKIES}=1;
 $user = 'admin';
-my $cfg = Model::GetCommonConfig->new->get_mojoapp_config('MyApp');
+my $cfg = Model::GetCommonConfig->new->get_mojoapp_config('web-myapp');
 my $spath = $cfg->{hypnotoad}->{service_path};
 my $secret = (split(/[\n\s]+/,path($ENV{COMMON_CONFIG_DIR},'secrets.txt')->slurp))[0];
 my $jwt = Mojo::JWT->new(claims=>{sid=>'123',expires => time + 60},secret=>$secret)->encode;
