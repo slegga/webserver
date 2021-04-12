@@ -61,10 +61,10 @@ sub main {
     my $last_pi_epoch=Mojo::Date->new($time )->epoch;
 
 # 2003-01"$last_pi_epoch";
-    if ($last_pi_epoch < time - 2 * 60 * 60) {
+    if ($last_pi_epoch < time - 4 * 60 * 60) {
         say "Pi down. Last call at $time";
     }
-    say $last_pi_epoch,'  ',time - 2 *60*60;
+    say $last_pi_epoch,'  ',time - 4 *60*60;
 }
 
 __PACKAGE__->new(options_cfg=>{extra=>1})->main();
