@@ -60,11 +60,11 @@ sub main {
 #    say STDERR $time;
     my $last_pi_epoch=Mojo::Date->new($time )->epoch;
 
-# 2003-01"$last_pi_epoch";
-    if ($last_pi_epoch < time - 4 * 60 * 60) {
+    my $old_epoch = time - 8 * 60 * 60; # 6 hour downtime at night
+    if ($last_pi_epoch < $old_epoch) {
         say "Pi down. Last call at $time";
     }
-    say $last_pi_epoch,'  ',time - 4 *60*60;
+    say $last_pi_epoch,'  ', $old_epoch;
 }
 
 __PACKAGE__->new(options_cfg=>{extra=>1})->main();
