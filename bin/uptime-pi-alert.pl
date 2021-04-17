@@ -63,8 +63,8 @@ sub main {
     my $old_epoch = time - 20  * 60 * 60; # 6 hour downtime at night
     if ($last_pi_epoch < $old_epoch) {
         say "Pi down. Last call at $time";
+        say $last_pi_epoch,' <  ', $old_epoch;
     }
-    say $last_pi_epoch,' <  ', $old_epoch;
 }
 
 __PACKAGE__->new(options_cfg=>{extra=>1})->main();
