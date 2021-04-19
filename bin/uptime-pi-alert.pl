@@ -55,7 +55,7 @@ sub main {
     my $file = $self->config->{web_services}->{'web-myapp'}->{'pi-status-file'};
     die "Missing MyApp:pi-status-file" . Dump $self->config->{web_services} if ! $file;
     $file =~ s|\$\{HOME\}|$ENV{HOME}|;
-    say $file;
+    #    say $file;
     my $time = decode_json(path($file)->slurp)->{a_time};
 #    say STDERR $time;
     my $last_pi_epoch=Mojo::Date->new($time )->epoch;
