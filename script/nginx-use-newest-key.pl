@@ -38,7 +38,7 @@ my $nginxconf = path('/etc/nginx/nginx.conf')->slurp;
 
 $nginxconf =~ s/\d\d\d\d\\_key\-certbot.pem/$name/gm;
 
-path('/etc/nginx/nginx.conf')->spurt($nginxconf);
+path('/etc/nginx/nginx.conf')->spew($nginxconf);
 
 =head1 AUTHOUR
 

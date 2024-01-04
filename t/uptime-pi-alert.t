@@ -25,7 +25,7 @@ use Test::ScriptX;
 # uptime-pi-alert.pl - Tell to stdout if long time since heard from pi.
 #t/data/pi-status.json
 #'
-path('t/data/pi-status.json')->spurt('{"a_time":"2020-01-16 23:12:01","address":"1.10.100.101"}');
+path('t/data/pi-status.json')->spew('{"a_time":"2020-01-16 23:12:01","address":"1.10.100.101"}');
 
 unlike(path('bin/uptime-pi-alert.pl')->slurp, qr{\<\<[A-Z]+\>\>},'All placeholders are changed');
 my $t = Test::ScriptX->new('bin/uptime-pi-alert.pl', debug=>1);

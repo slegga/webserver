@@ -53,7 +53,7 @@ sub startup {
 	my $config = $gcc->get_mojoapp_config($0);
 	$app->config($config);
 #	my $config_file = path('/tmp/test-webserver.conf');#Mojo::File->tempfile(DIR => '/tmp');
-#	$config_file->spurt(dumper $config);
+#	$config_file->spew(dumper $config);
 
 #	$app->plugin(Config => {file=>"$config_file"});
 
