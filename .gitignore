@@ -24,3 +24,4 @@ nytprof.out
 t/etc/session_store.db
 .prove
 t/data/pi-history.csv
+*.bak
