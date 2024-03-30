@@ -46,7 +46,7 @@ sub landing_page {
   my @fulldate = split(" ", localtime(time));
   my $week = strftime('%V',@now);
   my $daymonth = strftime('%d',@now);
-  my @months=qw/januar februar mars april mai juni juli august september oktober november desember/;
+  my @months = qw/januar februar mars april mai juni juli august september oktober november desember/;
   my %days = ("Mon", "mandag", "Tue", "tirsdag", "Wed", "onsdag", "Thu"
   , "torsdag", "Fri", "Fredag", "Sat", "lørdag", "Sun", "søndag");
   $self->stash({week=>$week, day=>$days{$fulldate[0]}, date=>"$daymonth $months[$now[4]] ".(1900 + $now[5])});
